@@ -1515,6 +1515,22 @@ body {
     padding: 14px;
     border-radius: 50%;
   }
+  .lp-check-list li span {
+    font-size: 0.88rem !important;
+  }
+  .lp-section-hero .d-flex.flex-wrap {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  .lp-section-hero .btn-dallas-primary,
+  .lp-section-hero .btn-dallas-outline {
+    font-size: 0.95rem !important;
+    padding: 14px 16px !important;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
 }
 
 /* ANIMAÇÃO ON SCROLL */
