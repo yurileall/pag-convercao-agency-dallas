@@ -3,6 +3,40 @@
  * Tooling: jQuery & Pure Vanilla JS
  */
 
+// CONFIGURAÇÃO DOS VÍDEOS DE DEPOIMENTO (YOUTUBE SHORTS)
+// Troque os 3 IDs abaixo pelos vídeos reais dos clientes da Dallas.
+// O ID é o trecho final da URL do YouTube, ex: https://youtube.com/shorts/ID_DO_SHORT_1
+// O player nativo do YouTube já exibe sozinho o avatar, o nome do canal e os
+// inscritos do vídeo (é o mesmo comportamento padrão de um Short incorporado),
+// por isso não é preciso montar esse selo manualmente.
+// ATENÇÃO: os IDs abaixo são vídeos públicos de terceiros usados apenas
+// como placeholder temporário para testar o layout. Substitua antes de publicar.
+const testimonialVideos = [
+  'XqY5uPsFxBA',
+  '_RFBxOSD8Sk',
+  'vkSObVsBBOM'
+];
+
+// API oficial do YouTube (carregada só quando o 1º short se aproxima da tela).
+// É o único jeito confiável de ligar a legenda por código: o parâmetro de URL
+// cc_load_policy não é respeitado por todos os players incorporados.
+let youtubeApiReady = false;
+const youtubeApiQueue = [];
+
+function loadYouTubeIframeApi() {
+  if (document.getElementById('youtube-iframe-api')) return;
+  const tag = document.createElement('script');
+  tag.id = 'youtube-iframe-api';
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+}
+
+window.onYouTubeIframeAPIReady = function () {
+  youtubeApiReady = true;
+  youtubeApiQueue.forEach(function (fn) { fn(); });
+  youtubeApiQueue.length = 0;
+};
+
 $(document).ready(function () {
   const WHATSAPP_PHONE = "557191840986"; // Configure o WhatsApp oficial da Dallas aqui
 
@@ -173,7 +207,93 @@ $(document).ready(function () {
     });
   }
 
-  // 11. ANIMAÇÃO ON SCROLL (INTERSECTION OBSERVER)
+  // 11. DEPOIMENTOS - VÍDEOS SHORTS DO YOUTUBE
+  // Cada card recebe o player nativo do YouTube (o mesmo player que a própria
+  // Assessoria Alpha usa): ele já mostra sozinho a thumbnail, o botão de play,
+  // o avatar, o nome do canal e os inscritos. O vídeo só toca quando o
+  // visitante clica no player, então já sai com som, sem autoplay algum.
+  // O player só é criado quando o card se aproxima da viewport (lazy load),
+  // usando a API oficial do YouTube para conseguir ligar a legenda sozinho.
+  (function initTestimonialShorts() {
+    const shortCards = document.querySelectorAll('.lp-short-card');
+    if (!shortCards.length) return;
+
+    const players = new Map();
+
+    function turnOnCaptions(player) {
+      player.loadModule('captions');
+      // O YouTube só preenche a lista de faixas de legenda um instante depois de carregar o módulo
+      setTimeout(function () {
+        const tracks = player.getOption('captions', 'tracklist') || [];
+        if (!tracks.length) return;
+        const ptTrack = tracks.find(function (t) { return (t.languageCode || '').startsWith('pt'); });
+        player.setOption('captions', 'track', ptTrack || tracks[0]);
+      }, 300);
+    }
+
+    function createPlayer(card, videoId) {
+      const mount = document.createElement('div');
+      card.querySelector('.lp-short-frame').appendChild(mount);
+
+      const player = new YT.Player(mount, {
+        videoId: videoId,
+        playerVars: {
+          playsinline: 1,
+          rel: 0
+        },
+        events: {
+          onReady: function (event) {
+            turnOnCaptions(event.target);
+          }
+        }
+      });
+
+      players.set(card, player);
+    }
+
+    function loadVideo(card, videoId) {
+      if (card.dataset.loaded === 'true') return;
+      card.dataset.loaded = 'true';
+
+      if (youtubeApiReady && window.YT && window.YT.Player) {
+        createPlayer(card, videoId);
+      } else {
+        youtubeApiQueue.push(function () { createPlayer(card, videoId); });
+        loadYouTubeIframeApi();
+      }
+    }
+
+    // Carrega o player um pouco antes do card entrar na tela
+    const loadObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        const card = entry.target;
+        const index = parseInt(card.getAttribute('data-video-index'), 10);
+        const videoId = testimonialVideos[index];
+        if (videoId) loadVideo(card, videoId);
+      });
+    }, { root: null, rootMargin: '400px 0px', threshold: 0 });
+
+    // Pausa o vídeo já em reprodução quando o card sai significativamente da tela
+    const playbackObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        const player = players.get(entry.target);
+        if (!player || typeof player.pauseVideo !== 'function') return;
+        if (entry.intersectionRatio >= 0.4) {
+          player.playVideo();
+        } else {
+          player.pauseVideo();
+        }
+      });
+    }, { root: null, threshold: [0, 0.4] });
+
+    shortCards.forEach(function (card) {
+      loadObserver.observe(card);
+      playbackObserver.observe(card);
+    });
+  })();
+
+  // 12. ANIMAÇÃO ON SCROLL (INTERSECTION OBSERVER)
   const observerOptions = {
     root: null,
     rootMargin: '0px',
@@ -190,7 +310,7 @@ $(document).ready(function () {
   }, observerOptions);
 
   // Seleciona os elementos para animar
-  const elementsToAnimate = document.querySelectorAll('.lp-section-header, .lp-testimonial-card, .lp-about-card, .lp-method-container, .lp-feature-card, .lp-pricing-card, .lp-cta-banner, .lp-faq-accordion');
+  const elementsToAnimate = document.querySelectorAll('.lp-section-header, .lp-short-card, .lp-about-card, .lp-method-container, .lp-feature-card, .lp-pricing-card, .lp-cta-banner, .lp-faq-accordion');
   
   elementsToAnimate.forEach(el => {
     el.classList.add('lp-scroll-hidden');
