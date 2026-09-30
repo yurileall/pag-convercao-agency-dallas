@@ -1,6 +1,7 @@
 /**
  * Agency Dallas - Conversion Page Scripts
- * Tooling: jQuery & Pure Vanilla JS
+ * Tooling: Pure Vanilla JS (sem jQuery, Bootstrap JS ou Swiper, para a página carregar rápido)
+ * Carregado com "defer": quando roda, o HTML já está pronto.
  */
 
 // CONFIGURAÇÃO DOS VÍDEOS DE DEPOIMENTO (YOUTUBE SHORTS)
@@ -37,8 +38,21 @@ window.onYouTubeIframeAPIReady = function () {
   youtubeApiQueue.length = 0;
 };
 
-$(document).ready(function () {
-  const WHATSAPP_PHONE = "557191840986"; // Configure o WhatsApp oficial da Dallas aqui
+(function () {
+  const WHATSAPP_PHONE = "557191840986"; // Sem o 9 de propósito: é como a conta está registrada no WhatsApp, e assim a prévia mostra a foto e o nome do perfil
+
+  const $ = function (selector) { return document.querySelector(selector); };
+  const $$ = function (selector) { return document.querySelectorAll(selector); };
+
+  function setValue(selector, value) {
+    const el = $(selector);
+    if (el) el.value = value;
+  }
+
+  function fieldValue(selector) {
+    const el = $(selector);
+    return el ? el.value.trim() : '';
+  }
 
   // 1. CAPTURA DE PARÂMETROS UTM E TRACKING DA URL
   function getUrlParams() {
@@ -56,157 +70,223 @@ $(document).ready(function () {
 
   const utmData = getUrlParams();
 
-  $('#form-utm-source').val(utmData.utm_source);
-  $('#form-utm-medium').val(utmData.utm_medium);
-  $('#form-utm-campaign').val(utmData.utm_campaign);
-  $('#form-utm-content').val(utmData.utm_content);
-  $('#form-utm-term').val(utmData.utm_term);
-  $('#form-fbclid').val(utmData.fbclid);
-  $('#form-gclid').val(utmData.gclid);
-  $('#form-debug-url').val(window.location.href);
-  $('#form-creation-time').val(Math.floor(Date.now() / 1000));
+  // TESTE A/B: cada página marca a própria versão no <body data-variante="...">
+  // A = index.html (com formulário) | B = lp.html (direto para o WhatsApp)
+  const VARIANTE = document.body.dataset.variante || 'A';
+  $$('.js-variante').forEach(function (el) { el.value = VARIANTE; });
+
+  // Ponto único para avisar os pixels de que alguém abriu o WhatsApp.
+  // Quando instalar o Meta Pixel e/ou o Google Analytics, os eventos já disparam daqui.
+  function notifyPixels(origem) {
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', 'Contact', { content_name: origem, variante: VARIANTE });
+    }
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'whatsapp_click', { origem: origem, variante: VARIANTE });
+    }
+  }
+
+  setValue('#form-utm-source', utmData.utm_source);
+  setValue('#form-utm-medium', utmData.utm_medium);
+  setValue('#form-utm-campaign', utmData.utm_campaign);
+  setValue('#form-utm-content', utmData.utm_content);
+  setValue('#form-utm-term', utmData.utm_term);
+  setValue('#form-fbclid', utmData.fbclid);
+  setValue('#form-gclid', utmData.gclid);
+  setValue('#form-debug-url', window.location.href);
+  setValue('#form-creation-time', Math.floor(Date.now() / 1000));
 
   // 2. MÁSCARA DINÂMICA DE TELEFONE (DDD + 8 ou 9 DÍGITOS)
-  $('#form-field-telefone').on('input', function () {
-    let v = $(this).val().replace(/\D/g, '');
-    if (v.length > 11) v = v.slice(0, 11);
+  const phoneField = $('#form-field-telefone');
+  if (phoneField) {
+    phoneField.addEventListener('input', function () {
+      let v = this.value.replace(/\D/g, '');
+      if (v.length > 11) v = v.slice(0, 11);
 
-    if (v.length > 10) {
-      // (11) 99999-9999
-      v = v.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
-    } else if (v.length > 6) {
-      // (11) 9999-9999
-      v = v.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
-    } else if (v.length > 2) {
-      // (11) 999...
-      v = v.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
-    } else if (v.length > 0) {
-      v = v.replace(/^(\d*)$/, '($1');
-    }
-    $(this).val(v);
-  });
-
-  // 3. MÁSCARA DE CNPJ
-  $('#form-field-cnpj').on('input', function () {
-    let v = $(this).val().replace(/\D/g, '');
-    if (v.length > 14) v = v.slice(0, 14);
-    if (v.length > 2) v = v.replace(/^(\d{2})(\d)/, '$1.$2');
-    if (v.length > 5) v = v.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
-    if (v.length > 8) v = v.replace(/\.(\d{3})(\d)/, '.$1/$2');
-    if (v.length > 12) v = v.replace(/(\d{4})(\d)/, '$1-$2');
-    $(this).val(v);
-  });
-
-  // 6. ENVIO E CONVERSÃO DO FORMULÁRIO
-  $('#conversion-form').on('submit', function (e) {
-    e.preventDefault();
-
-    const nome = $('#form-field-nome').length ? $('#form-field-nome').val().trim() : '';
-    const email = $('#form-field-email').length ? $('#form-field-email').val().trim() : '';
-    const telefone = $('#form-field-telefone').length ? $('#form-field-telefone').val().trim() : '';
-    const segmento = $('#form-field-segmento').length ? $('#form-field-segmento').val() : '';
-    const servico = $('#form-field-servico').length ? $('#form-field-servico').val() : '';
-
-    // Feedback visual no botão
-    const $submitBtn = $(this).find('button[type="submit"]');
-    $submitBtn.html('<span>ENVIANDO...</span>').prop('disabled', true);
-
-    // Monta texto formatado para envio para WhatsApp
-    let msg = `Olá! Fiquei interessado nos serviços da Agency Dallas e gostaria de mais informações.\n\n`;
-    if (nome) msg += `*Nome:* ${nome}\n`;
-    if (telefone) msg += `*WhatsApp:* ${telefone}\n`;
-    if (segmento) msg += `*Segmento:* ${segmento}\n`;
-    if (servico) msg += `*Plano de Interesse:* ${servico}\n`;
-    if (email) msg += `*E-mail:* ${email}\n`;
-
-    if (utmData.utm_source) {
-      msg += `\n*Origem:* ${utmData.utm_source} | Campanha: ${utmData.utm_campaign || 'N/A'}`;
-    }
-
-    const encodedMsg = encodeURIComponent(msg);
-    const waUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodedMsg}`;
-
-    setTimeout(function () {
-      window.location.href = waUrl;
-    }, 400);
-  });
-
-  // 7. ACCORDION FAQ
-  $('.lp-faq-header').on('click', function () {
-    const $item = $(this).closest('.lp-faq-item');
-    const $body = $item.find('.lp-faq-body');
-
-    if ($item.hasClass('active')) {
-      $body.slideUp(200);
-      $item.removeClass('active');
-    } else {
-      $('.lp-faq-item.active').removeClass('active').find('.lp-faq-body').slideUp(200);
-      $item.addClass('active');
-      $body.slideDown(250);
-    }
-  });
-
-  // 8. ROLAGEM SUAVE PARA FORMULÁRIO NOS BOTÕES ÂNCORA
-  $('a[href="#formulario-conversao"]').on('click', function (e) {
-    e.preventDefault();
-    const target = $('#formulario-conversao');
-    if (target.length) {
-      $('html, body').animate({
-        scrollTop: target.offset().top - 40
-      }, 600);
-      $('#form-field-nome').focus();
-    }
-  });
-
-  // 9. BOTÕES DE COMBOS PREENCHEM AUTOMATICAMENTE O CAMPO DO FORMULÁRIO
-  $('[data-combo-select]').on('click', function (e) {
-    e.preventDefault();
-    const comboValue = $(this).data('combo-select');
-    $('#form-field-servico').val(comboValue);
-    
-    $('html, body').animate({
-      scrollTop: $('#formulario-conversao').offset().top - 40
-    }, 600);
-    $('#form-field-nome').focus();
-  });
-
-  // 10. CARROSSEL CENTRALIZADO SWIPER (ALPHA STYLE COM CARDS LATERAIS VISÍVEIS)
-  if (typeof Swiper !== 'undefined' && $('.lp-swiper').length > 0) {
-    const dallasSwiper = new Swiper('.lp-swiper', {
-      slidesPerView: 'auto',
-      centeredSlides: true,
-      spaceBetween: 28,
-      loop: true,
-      speed: 600,
-      grabCursor: true,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: true,
-      },
-      navigation: {
-        nextEl: '.lp-swiper-next',
-        prevEl: '.lp-swiper-prev',
-      },
-      pagination: {
-        el: '.lp-swiper-pagination',
-        clickable: true,
-      },
-      breakpoints: {
-        320: {
-          spaceBetween: 16,
-        },
-        768: {
-          spaceBetween: 24,
-        },
-        1200: {
-          spaceBetween: 32,
-        }
+      if (v.length > 10) {
+        // (11) 99999-9999
+        v = v.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+      } else if (v.length > 6) {
+        // (11) 9999-9999
+        v = v.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
+      } else if (v.length > 2) {
+        // (11) 999...
+        v = v.replace(/^(\d{2})(\d{0,5})$/, '($1) $2');
+      } else if (v.length > 0) {
+        v = v.replace(/^(\d*)$/, '($1');
       }
+      this.value = v;
+
+      // Limpa o aviso de telefone inválido assim que a pessoa corrige o campo
+      this.setCustomValidity('');
     });
   }
 
-  // 11. DEPOIMENTOS - VÍDEOS SHORTS DO YOUTUBE
+  // 3. ENVIO E CONVERSÃO DO FORMULÁRIO
+  const conversionForm = $('#conversion-form');
+
+  // Registra o lead no Netlify Forms (Painel da Netlify > Forms > lead-conversao).
+  // Resolve mesmo em caso de erro ou demora, para nunca travar o redirecionamento.
+  function saveLeadOnNetlify(form) {
+    const body = new URLSearchParams(new FormData(form)).toString();
+    const request = fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body,
+      keepalive: true
+    }).catch(function () {});
+    const timeout = new Promise(function (resolve) { setTimeout(resolve, 1500); });
+    return Promise.race([request, timeout]);
+  }
+
+  if (conversionForm) {
+    const submitBtn = conversionForm.querySelector('button[type="submit"]');
+    const submitBtnHtml = submitBtn.innerHTML;
+
+    // Se a pessoa voltar do WhatsApp sem enviar, o navegador pode restaurar a
+    // página do cache com o botão travado em "ENVIANDO...". Aqui ele é liberado.
+    window.addEventListener('pageshow', function () {
+      submitBtn.innerHTML = submitBtnHtml;
+      submitBtn.disabled = false;
+    });
+
+    conversionForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Telefone precisa ter DDD + 8 ou 9 dígitos
+      const phoneDigits = phoneField.value.replace(/\D/g, '');
+      phoneField.setCustomValidity(phoneDigits.length >= 10 ? '' : 'Informe seu WhatsApp com DDD.');
+
+      if (!this.checkValidity()) {
+        this.reportValidity();
+        return;
+      }
+
+      const nome = fieldValue('#form-field-nome');
+      const telefone = fieldValue('#form-field-telefone');
+      const segmento = fieldValue('#form-field-segmento');
+      const servico = fieldValue('#form-field-servico');
+
+      // Feedback visual no botão
+      submitBtn.innerHTML = '<span>ENVIANDO...</span>';
+      submitBtn.disabled = true;
+
+      // Monta texto formatado para envio para WhatsApp
+      let msg = `Olá! Fiquei interessado nos serviços da Agency Dallas e gostaria de mais informações.\n\n`;
+      if (nome) msg += `*Nome:* ${nome}\n`;
+      if (telefone) msg += `*WhatsApp:* ${telefone}\n`;
+      if (segmento) msg += `*Segmento:* ${segmento}\n`;
+      if (servico) msg += `*Plano de Interesse:* ${servico}\n`;
+
+      if (utmData.utm_source) {
+        msg += `\n*Origem:* ${utmData.utm_source} | Campanha: ${utmData.utm_campaign || 'N/A'}`;
+      }
+      msg += `\n\n(ref. ${VARIANTE})`;
+
+      notifyPixels('formulario');
+
+      const waUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(msg)}`;
+
+      // Salva o lead primeiro; assim, mesmo que a pessoa desista no WhatsApp,
+      // nome, telefone, segmento e UTMs ficam registrados para contato posterior.
+      saveLeadOnNetlify(this).then(function () {
+        window.location.href = waUrl;
+      });
+    });
+  }
+
+  // 4. BOTÕES QUE ABREM O WHATSAPP DIRETO, sem passar pelo formulário.
+  // data-origem = qual botão foi clicado | data-servico = combo escolhido (opcional)
+  // O "(ref. A/B)" no fim da mensagem mostra de qual versão da página o cliente veio.
+  $$('.js-wa-direct').forEach(function (link) {
+    const servico = link.dataset.servico;
+    let msg = servico
+      ? `Olá! Vim pela página da Agency Dallas e tenho interesse no *${servico}*.`
+      : 'Olá! Vim pela página da Agency Dallas e quero saber mais sobre as páginas.';
+    if (utmData.utm_source) {
+      msg += `\n\n*Origem:* ${utmData.utm_source} | Campanha: ${utmData.utm_campaign || 'N/A'}`;
+    }
+    msg += `\n\n(ref. ${VARIANTE})`;
+    link.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(msg)}`;
+
+    // Registra o clique no Netlify Forms (Painel da Netlify > Forms > clique-whatsapp).
+    // O link abre em nova aba, então a página continua aberta e o envio termina normalmente.
+    link.addEventListener('click', function () {
+      const origem = link.dataset.origem || 'desconhecida';
+      const body = new URLSearchParams({
+        'form-name': 'clique-whatsapp',
+        variante: VARIANTE,
+        origem: origem,
+        servico: servico || '',
+        utm_source: utmData.utm_source,
+        utm_medium: utmData.utm_medium,
+        utm_campaign: utmData.utm_campaign,
+        utm_content: utmData.utm_content,
+        fbclid: utmData.fbclid,
+        gclid: utmData.gclid
+      }).toString();
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body,
+        keepalive: true
+      }).catch(function () {});
+      notifyPixels(origem);
+    });
+  });
+
+  // 5. ACCORDION FAQ (abre um por vez, com animação de altura)
+  function slide(body, open) {
+    body.style.overflow = 'hidden';
+    body.style.display = 'block';
+    const full = body.scrollHeight + 'px';
+    const anim = body.animate(
+      open ? [{ height: '0px' }, { height: full }] : [{ height: full }, { height: '0px' }],
+      { duration: open ? 250 : 200, easing: 'ease' }
+    );
+    anim.onfinish = function () {
+      body.style.overflow = '';
+      if (!open) body.style.display = 'none';
+    };
+  }
+
+  $$('.lp-faq-header').forEach(function (header) {
+    header.addEventListener('click', function () {
+      const item = header.closest('.lp-faq-item');
+      const body = item.querySelector('.lp-faq-body');
+
+      if (item.classList.contains('active')) {
+        item.classList.remove('active');
+        slide(body, false);
+      } else {
+        $$('.lp-faq-item.active').forEach(function (openItem) {
+          openItem.classList.remove('active');
+          slide(openItem.querySelector('.lp-faq-body'), false);
+        });
+        item.classList.add('active');
+        slide(body, true);
+      }
+    });
+  });
+
+  // 6. ROLAGEM SUAVE ATÉ O FORMULÁRIO (e os botões de combo já preenchem o plano escolhido)
+  function scrollToForm() {
+    const target = $('#formulario-conversao');
+    if (!target) return;
+    window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 40, behavior: 'smooth' });
+    const nameField = $('#form-field-nome');
+    if (nameField) nameField.focus({ preventScroll: true });
+  }
+
+  $$('a[href="#formulario-conversao"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (link.dataset.comboSelect) setValue('#form-field-servico', link.dataset.comboSelect);
+      scrollToForm();
+    });
+  });
+
+  // 7. DEPOIMENTOS - VÍDEOS SHORTS DO YOUTUBE
   // Cada card recebe o player nativo do YouTube (o mesmo player que a própria
   // Assessoria Alpha usa): ele já mostra sozinho a thumbnail, o botão de play,
   // o avatar, o nome do canal e os inscritos. O vídeo só toca quando o
@@ -290,29 +370,18 @@ $(document).ready(function () {
     });
   })();
 
-  // 12. ANIMAÇÃO ON SCROLL (INTERSECTION OBSERVER)
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.15
-  };
-
-  const scrollObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
+  // 8. ANIMAÇÃO ON SCROLL (INTERSECTION OBSERVER)
+  const scrollObserver = new IntersectionObserver(function (entries, observer) {
+    entries.forEach(function (entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('lp-is-visible');
         observer.unobserve(entry.target);
       }
     });
-  }, observerOptions);
+  }, { root: null, rootMargin: '0px', threshold: 0.15 });
 
-  // Seleciona os elementos para animar
-  const elementsToAnimate = document.querySelectorAll('.lp-section-header, .lp-short-card, .lp-about-card, .lp-method-container, .lp-feature-card, .lp-pricing-card, .lp-cta-banner, .lp-faq-accordion');
-  
-  elementsToAnimate.forEach(el => {
+  $$('.lp-section-header, .lp-gallery-columns, .lp-gallery-phones, .lp-short-card, .lp-about-card, .lp-steps-grid, .lp-feature-card, .lp-pricing-card, .lp-cta-banner, .lp-faq-accordion').forEach(function (el) {
     el.classList.add('lp-scroll-hidden');
     scrollObserver.observe(el);
   });
-});
-
-
+})();

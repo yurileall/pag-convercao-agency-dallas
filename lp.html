@@ -6,32 +6,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agency Dallas • Landing Pages, Link na Bio e Design que Vendem</title>
   <meta name="description"
-    content="Aumente as vendas da sua empresa com landing pages de alta conversão e link na bio profissional. Entrega em até 72h sem mensalidade.">
+    content="Sua página profissional no ar em 72h, a partir de R$ 197 e sem mensalidade. Landing pages e link na bio que levam clientes direto para o seu WhatsApp.">
   <meta property="og:title" content="Agency Dallas • Páginas e Design de Alta Conversão">
   <meta property="og:description"
     content="Transforme seu posicionamento digital em uma máquina de novos clientes e vendas no WhatsApp.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
+  <!-- Imagem de prévia no WhatsApp/Instagram (1200×630). Precisa de URL absoluta:
+       fica hospedada no site oficial. Cópia local em assets/og-image.jpg. -->
+  <meta property="og:image" content="https://agencydallas.netlify.app/og-lp.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Agency Dallas: sua página profissional no ar em 72h, a partir de R$ 197">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://agencydallas.netlify.app/og-lp.jpg">
   <link rel="icon" type="image/png" href="https://agencydallas.netlify.app/logo.png">
 
   <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap 5 CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
-  <!-- Swiper CSS (Alpha Style Carousel) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body data-variante="B">
 
-  <!-- HERO SECTION + FORMULÁRIO DE QUALIFICAÇÃO -->
+  <!-- HERO SECTION + BOTÃO DIRETO PARA O WHATSAPP -->
   <header class="lp-section-hero" id="topo">
     <div class="container">
       <div class="row align-items-center g-5">
@@ -40,7 +43,7 @@
         <div class="col-lg-6">
           <div class="mb-4">
             <a href="#topo" class="lp-logo-brand">
-              <img src="assets/logo-dallas.png" alt="Agency Dallas" class="img-fluid" style="max-height: 40px;">
+              <img src="assets/logo-dallas.png" alt="Agency Dallas" width="40" height="40" style="height: 40px; width: auto;">
               <span>AGENCY DALLAS</span>
             </a>
           </div>
@@ -51,94 +54,64 @@
           </div>
 
           <h1 class="lp-title-main">
-            Fazemos a sua empresa faturar mais com <span class="highlight">Landing Pages e Design que vendem</span>
+            Sua página profissional no ar em 72h, <span class="highlight">a partir de R$ 197 e sem mensalidade.</span>
           </h1>
 
           <p class="lp-subtitle">
-            Agende um atendimento rápido e descubra como transformamos o seu posicionamento em uma máquina contínua de novos contatos e vendas diretas no WhatsApp.
+            Landing pages e link na bio que levam clientes direto para o seu WhatsApp. Já são +50 páginas entregues para advogados, psicólogos, dentistas e comércios.
           </p>
 
           <ul class="lp-check-list">
             <li>
               <span class="lp-check-icon">✓</span>
-              <span>Marketing, páginas e design focados 100% em VENDAS</span>
+              <span>Pagamento único, com hospedagem inclusa</span>
             </li>
             <li>
               <span class="lp-check-icon">✓</span>
-              <span>Especialistas em Landing Pages de Alta Conversão e Link na Bio Otimizado</span>
+              <span>Botões que levam o visitante direto para o seu WhatsApp</span>
             </li>
             <li>
               <span class="lp-check-icon">✓</span>
-              <span>Entrega rápida em até 72h sem mensalidades de servidor</span>
+              <span>24h após a entrega para pedir os ajustes que quiser</span>
             </li>
           </ul>
 
           <div class="d-flex flex-wrap gap-3">
-            <a href="#formulario-conversao" class="btn-dallas-primary">
-              <span>Quero resultados como esse</span>
+            <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="btn-dallas-primary js-wa-direct" data-origem="hero">
+              <span>Quero minha página</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
             </a>
-            <a href="#combos" class="btn-dallas-outline">
-              <span>Ver Planos & Combos</span>
+            <a href="#portfolio" class="btn-dallas-outline">
+              <span>Ver páginas que entregamos</span>
             </a>
           </div>
         </div>
 
-        <!-- LADO DIREITO: FORMULÁRIO DE QUALIFICAÇÃO -->
+        <!-- LADO DIREITO: BOTÃO DIRETO PARA O WHATSAPP (VERSÃO B DO TESTE A/B) -->
         <div class="col-lg-6">
           <div class="lp-form-card" id="formulario-conversao">
-            <h2 class="lp-form-title">Solicite sua Proposta Personalizada</h2>
-            <p class="lp-form-subtitle">Preencha os campos abaixo para receber o contato de um especialista:</p>
+            <h2 class="lp-form-title">Fale agora com a gente no WhatsApp</h2>
+            <p class="lp-form-subtitle">Clique no botão e a conversa abre no seu WhatsApp com a mensagem pronta. Você recebe uma proposta personalizada, sem compromisso.</p>
 
-            <form id="conversion-form" novalidate>
-              <!-- Hidden UTMs e Tracking -->
-              <input type="hidden" name="utm_source" id="form-utm-source">
-              <input type="hidden" name="utm_medium" id="form-utm-medium">
-              <input type="hidden" name="utm_campaign" id="form-utm-campaign">
-              <input type="hidden" name="utm_content" id="form-utm-content">
-              <input type="hidden" name="utm_term" id="form-utm-term">
-              <input type="hidden" name="fbclid" id="form-fbclid">
-              <input type="hidden" name="gclid" id="form-gclid">
-              <input type="hidden" name="debug_full_url" id="form-debug-url">
-              <input type="hidden" name="creation_time" id="form-creation-time">
+            <ul class="lp-check-list mb-0">
+              <li>
+                <span class="lp-check-icon">✓</span>
+                <span>Sem cadastro: você fala direto com a gente</span>
+              </li>
+              <li>
+                <span class="lp-check-icon">✓</span>
+                <span>Página pronta em até 72h</span>
+              </li>
+              <li>
+                <span class="lp-check-icon">✓</span>
+                <span>A partir de R$ 197, pagamento único</span>
+              </li>
+            </ul>
 
-              <input type="hidden" id="form-field-servico" name="servico" value="">
-
-              <div class="lp-field-group">
-                <label for="form-field-nome" class="lp-label lp-label-hidden">Seu Nome *</label>
-                <input type="text" id="form-field-nome" class="lp-input" placeholder="Seu nome completo" required>
-              </div>
-
-              <div class="lp-field-group">
-                <label for="form-field-telefone" class="lp-label lp-label-hidden">WhatsApp com DDD *</label>
-                <input type="tel" id="form-field-telefone" class="lp-input" placeholder="WhatsApp (DDD)" maxlength="15" required>
-              </div>
-
-              <div class="lp-field-group">
-                <label for="form-field-segmento" class="lp-label">Qual o seu Segmento? *</label>
-                <select id="form-field-segmento" class="lp-select" required>
-                  <option value="">Selecionar segmento</option>
-                  <option value="Saúde, Medicina & Psicologia">Saúde, Medicina & Psicologia</option>
-                  <option value="Advocacia & Serviços Jurídicos">Advocacia & Serviços Jurídicos</option>
-                  <option value="Gastronomia & Alimentação">Gastronomia & Alimentação</option>
-                  <option value="Estética, Beleza & Bem-Estar">Estética, Beleza & Bem-Estar</option>
-                  <option value="Imobiliário & Construção">Imobiliário & Construção</option>
-                  <option value="Consultoria & Serviços">Consultoria & Serviços</option>
-                  <option value="Comércio, E-commerce & Varejo">Comércio, E-commerce & Varejo</option>
-                  <option value="Outros Segmentos">Outros Segmentos</option>
-                </select>
-              </div>
-
-              <button type="submit" class="lp-form-submit-btn mt-3">
-                <span>Quero vender mais investindo menos</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </button>
-
-              <div class="lp-security-note">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                <span>Seus dados estão 100% seguros e confidenciais</span>
-              </div>
-            </form>
+            <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="lp-form-submit-btn mt-3 js-wa-direct" data-origem="hero-card">
+              <span>Chamar no WhatsApp agora</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
           </div>
         </div>
 
@@ -150,12 +123,111 @@
   <section class="lp-marquee-container">
     <div class="lp-marquee-track-1">
       <div class="marquee-content">
-        +50 PROJETOS ENTREGUES &nbsp;•&nbsp; +100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp; DESIGN DE ALTO PADRÃO &nbsp;•&nbsp; +50 PROJETOS ENTREGUES &nbsp;•&nbsp; +100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp;
+        +50 PROJETOS ENTREGUES &nbsp;•&nbsp; +100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp; A PARTIR DE R$ 197 &nbsp;•&nbsp; +50 PROJETOS ENTREGUES &nbsp;•&nbsp; +100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp;
       </div>
     </div>
     <div class="lp-marquee-track-2">
       <div class="marquee-content">
-        +50 PROJETOS ENTREGUES &nbsp;•&nbsp; +100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp; DESIGN DE ALTO PADRÃO &nbsp;•&nbsp; +50 PROJETOS ENTREGUES &nbsp;•&nbsp; +100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp;
+        +50 PROJETOS ENTREGUES &nbsp;•&nbsp; +100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp; A PARTIR DE R$ 197 &nbsp;•&nbsp; +50 PROJETOS ENTREGUES &nbsp;•&nbsp; +100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp;
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO PORTFÓLIO: PÁGINAS QUE ENTREGAMOS (MESMO ESTILO DO SITE PRINCIPAL) -->
+  <section class="lp-section" id="portfolio">
+    <div class="container">
+      <div class="lp-section-header">
+        <div class="lp-eyebrow">
+          <span class="lp-eyebrow-dot"></span>
+          <span>PORTFÓLIO DE PROJETOS</span>
+        </div>
+        <h2 class="lp-section-title">
+          Veja páginas que entregamos para <span class="strong">diferentes nichos</span>
+        </h2>
+        <p class="lp-section-desc">
+          A imagem fala por si: veja cada página do topo ao fim. Passe o mouse (ou arraste, no celular) para rolar.
+        </p>
+      </div>
+
+      <!-- GALERIA: páginas inteiras dos projetos (passe o mouse para rolar) -->
+      <div class="lp-gallery-columns">
+        <a class="lp-gallery-item" href="https://agencydallas.netlify.app/" target="_blank" rel="noopener">
+          <div class="lp-gallery-window">
+            <img src="assets/galeria/agency-dallas.webp" alt="Página completa do site oficial da Agency Dallas" loading="lazy">
+          </div>
+          <div class="lp-gallery-caption">
+            <span class="lp-gallery-niche">Landing Page Oficial</span>
+            <h3>Site Oficial • Agency Dallas</h3>
+            <span class="lp-gallery-link">Ver site ao vivo ↗</span>
+          </div>
+        </a>
+        <a class="lp-gallery-item" href="https://psicologaevelynfernanda.netlify.app/" target="_blank" rel="noopener">
+          <div class="lp-gallery-window">
+            <img src="assets/galeria/evelyn-fernanda.webp" alt="Página completa da landing page da Dra. Evelyn Fernanda" loading="lazy">
+          </div>
+          <div class="lp-gallery-caption">
+            <span class="lp-gallery-niche">Saúde &amp; Psicologia</span>
+            <h3>Psicóloga • Dra. Evelyn Fernanda</h3>
+            <span class="lp-gallery-link">Ver site ao vivo ↗</span>
+          </div>
+        </a>
+        <a class="lp-gallery-item" href="https://advrafaelbaiao.netlify.app/" target="_blank" rel="noopener">
+          <div class="lp-gallery-window">
+            <img src="assets/galeria/rafael-baiao.webp" alt="Página completa da landing page do Dr. Rafael Baião" loading="lazy">
+          </div>
+          <div class="lp-gallery-caption">
+            <span class="lp-gallery-niche">Advocacia &amp; Direito</span>
+            <h3>Advogado • Dr. Rafael Baião</h3>
+            <span class="lp-gallery-link">Ver site ao vivo ↗</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="lp-gallery-phones-header">
+        <h3>Links na Bio / Painéis de Atendimento</h3>
+        <p>Páginas feitas para o celular, direto da bio do Instagram.</p>
+      </div>
+      <div class="lp-gallery-phones">
+        <a class="lp-gallery-phone" href="https://agencydallasbio.netlify.app/" target="_blank" rel="noopener">
+          <div class="lp-gallery-phone-frame">
+            <div class="lp-gallery-window lp-gallery-window--phone">
+              <img src="assets/galeria/agency-dallas-bio.webp" alt="Link na Bio da Agency Dallas" loading="lazy">
+            </div>
+          </div>
+          <div class="lp-gallery-caption">
+            <h3>Link na Bio • Agency Dallas</h3>
+            <span class="lp-gallery-link">Ver ao vivo ↗</span>
+          </div>
+        </a>
+        <a class="lp-gallery-phone" href="https://evelynfernandabio.netlify.app/" target="_blank" rel="noopener">
+          <div class="lp-gallery-phone-frame">
+            <div class="lp-gallery-window lp-gallery-window--phone">
+              <img src="assets/galeria/evelyn-fernanda-bio.webp" alt="Link na Bio da Dra. Evelyn Fernanda" loading="lazy">
+            </div>
+          </div>
+          <div class="lp-gallery-caption">
+            <h3>Link na Bio • Dra. Evelyn Fernanda</h3>
+            <span class="lp-gallery-link">Ver ao vivo ↗</span>
+          </div>
+        </a>
+        <a class="lp-gallery-phone" href="https://draandrezarodriguesbio.netlify.app/" target="_blank" rel="noopener">
+          <div class="lp-gallery-phone-frame">
+            <div class="lp-gallery-window lp-gallery-window--phone">
+              <img src="assets/galeria/andreza-rodrigues-bio.webp" alt="Link na Bio da Dra. Andreza Rodrigues" loading="lazy">
+            </div>
+          </div>
+          <div class="lp-gallery-caption">
+            <h3>Link na Bio • Dra. Andreza Rodrigues</h3>
+            <span class="lp-gallery-link">Ver ao vivo ↗</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="text-center mt-5">
+        <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="btn-dallas-primary js-wa-direct" data-origem="portfolio">
+          <span>Quero uma página assim</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
       </div>
     </div>
   </section>
@@ -166,10 +238,10 @@
       <div class="lp-section-header">
         <div class="lp-eyebrow">
           <span class="lp-eyebrow-dot"></span>
-          <span>👤 DEPOIMENTOS DE CLIENTES</span>
+          <span>DEPOIMENTOS DE CLIENTES</span>
         </div>
         <h2 class="lp-section-title">
-          MAIS DE <span class="strong">50 EMPRESAS</span> COM <span class="strong">RESULTADOS REAIS</span>. ISSO É <span class="strong">AGENCY DALLAS</span>.
+          Mais de 50 empresas com <span class="strong">resultados reais</span>
         </h2>
         <p class="lp-section-desc">
           Veja a opinião de quem já transformou sua presença digital em uma máquina de vendas:
@@ -206,13 +278,13 @@
               <span>QUEM SOMOS</span>
             </div>
             <h2 class="lp-section-title text-start mb-3">
-              <span class="strong">REFERÊNCIA</span> EM <span class="strong">LANDING PAGES E DESIGN DE ALTA CONVERSÃO</span> E PARCEIRA DO <span class="strong">SEU SUCESSO</span>.
+              Site profissional não precisa <span class="strong">custar caro</span> nem demorar semanas.
             </h2>
             <p class="text-dallas-light mb-3">
-              Na <strong class="text-dallas-white">Agency Dallas</strong>, não somos apenas uma agência; somos a parceira estratégica para empresas e profissionais liberais que buscam presença digital imponente, moderna e focada em resultados.
+              A <strong class="text-dallas-white">Agency Dallas</strong> cria landing pages, link na bio e otimização para o Google para empresas e profissionais liberais de todo o Brasil.
             </p>
             <p class="text-dallas-light mb-0">
-              Eliminamos o estresse de sites lentos, custos exorbitantes e mensalidades abusivas. Nossa metodologia integra design de nível internacional, velocidade extrema e gatilhos de conversão direcionados para o seu WhatsApp.
+              Sem mensalidade e sem semanas de espera: você paga uma vez, recebe a página em até 72h e cada botão leva o visitante direto para o seu WhatsApp.
             </p>
 
             <div class="lp-stats-grid">
@@ -237,7 +309,7 @@
 
           <div class="col-lg-6 text-center">
             <div class="p-4 bg-dallas-black border-dallas border rounded-4 text-start">
-              <div class="d-flex align-items-center gap-2 mb-3">
+              <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
                 <span class="badge bg-light text-dark fw-bold px-3 py-2">ESTRUTURA DALLAS</span>
                 <span class="badge border text-light px-3 py-2">ATENDIMENTO BRASIL</span>
               </div>
@@ -245,7 +317,7 @@
               <p class="text-dallas-light fs-6 mb-4">
                 Cada projeto é construído com código leve, otimização SEO e arquitetura mobile-first para garantir que seus visitantes se transformem em compradores reais.
               </p>
-              <a href="#formulario-conversao" class="btn-dallas-primary w-100">
+              <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="btn-dallas-primary w-100 js-wa-direct" data-origem="sobre">
                 <span>Falar com nosso time agora</span>
               </a>
             </div>
@@ -255,223 +327,163 @@
     </div>
   </section>
 
-  <!-- SEÇÃO 3: O MÉTODO DALLAS (DIAGRAMA ESTILO ALPHA) -->
-  <section class="lp-section" id="metodo">
+  <!-- SEÇÃO 3: COMO FUNCIONA (4 PASSOS) -->
+  <section class="lp-section" id="como-funciona">
     <div class="container">
       <div class="lp-section-header">
         <div class="lp-eyebrow">
           <span class="lp-eyebrow-dot"></span>
-          <span>O MÉTODO DALLAS</span>
+          <span>COMO FUNCIONA</span>
         </div>
         <h2 class="lp-section-title">
-          EXISTE UM <span class="strong">MÉTODO COMPROVADO</span> PARA QUE SUA EMPRESA <span class="strong">NUNCA PARE</span> DE <span class="strong">VENDER</span>
+          Do primeiro contato à <span class="strong">página no ar</span> em 4 passos
         </h2>
         <p class="lp-section-desc">
-          Se você seguir, irá manter seu negócio faturando todos os dias:
+          Você não precisa entender de site. A gente cuida de tudo:
         </p>
       </div>
 
-      <!-- DIAGRAMA VISUAL COM LOGO E CONECTORES -->
-      <div class="lp-method-container">
-        <div class="lp-method-glow-bg"></div>
-
-        <!-- CONECTORES LADO ESQUERDO -->
-        <div class="lp-method-pointer pointer-left pos-engajamento">
-          <span>Autoridade & Design</span>
-          <span class="lp-pointer-line"></span>
+      <div class="lp-steps-grid">
+        <div class="lp-step-card">
+          <div class="lp-step-number">01</div>
+          <h3 class="lp-step-title">Você manda as informações</h3>
+          <p class="lp-step-text">Pelo WhatsApp mesmo: seus serviços, fotos, contatos e o que quer destacar.</p>
         </div>
-
-        <div class="lp-method-pointer pointer-left pos-ativacao">
-          <span>Tráfego & Atração</span>
-          <span class="lp-pointer-line"></span>
+        <div class="lp-step-card">
+          <div class="lp-step-number">02</div>
+          <h3 class="lp-step-title">Criamos em até 72h</h3>
+          <p class="lp-step-text">Montamos o texto, o visual e os botões que levam direto para o seu WhatsApp.</p>
         </div>
-
-        <!-- LOGO DALLAS CENTRALIZADO -->
-        <div class="lp-method-logo-wrapper">
-          <img src="assets/logo-dallas.png" alt="Logo Agency Dallas" class="lp-method-center-logo">
-          
-          <!-- BADGE INFERIOR: MONETIZAÇÃO -->
-          <div class="lp-method-bottom-badge">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"></path><path d="M11 3v6l-5-6"></path><path d="M13 3v6l5-6"></path><path d="M2 9h20"></path></svg>
-            <span>Lucro & Conversão</span>
-          </div>
+        <div class="lp-step-card">
+          <div class="lp-step-number">03</div>
+          <h3 class="lp-step-title">Você pede ajustes</h3>
+          <p class="lp-step-text">Depois de receber a página, você tem 24h para pedir os ajustes que quiser.</p>
         </div>
-
-        <!-- CONECTORES LADO DIREITO -->
-        <div class="lp-method-pointer pointer-right pos-retencao">
-          <span>Landing Page Persuasiva</span>
-          <span class="lp-pointer-line"></span>
+        <div class="lp-step-card">
+          <div class="lp-step-number">04</div>
+          <h3 class="lp-step-title">Página no ar</h3>
+          <p class="lp-step-text">Publicada e pronta para receber clientes, sem mensalidade.</p>
         </div>
+      </div>
 
-        <div class="lp-method-pointer pointer-right pos-aquisicao">
-          <span>Vendas no WhatsApp</span>
-          <span class="lp-pointer-line"></span>
-        </div>
-
-        <div class="lp-method-pointer pointer-right pos-indicacao">
-          <span>Escala & Retenção</span>
-          <span class="lp-pointer-line"></span>
-        </div>
-
-        <!-- VERSÃO GRID PARA MOBILE -->
-        <div class="lp-method-pointers-mobile-grid d-lg-none">
-          <div class="lp-method-pointer"><span>• Autoridade & Design</span></div>
-          <div class="lp-method-pointer"><span>• Tráfego & Atração</span></div>
-          <div class="lp-method-pointer"><span>• Landing Page Persuasiva</span></div>
-          <div class="lp-method-pointer"><span>• Vendas no WhatsApp</span></div>
-          <div class="lp-method-pointer"><span>• Escala & Retenção</span></div>
-        </div>
+      <div class="text-center mt-5">
+        <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="btn-dallas-primary js-wa-direct" data-origem="como-funciona">
+          <span>Quero começar agora</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- SEÇÃO 4: O QUE FAZEMOS (CARROSSEL SWIPER CENTRALIZADO COM CARDS LATERAIS) -->
+  <!-- SEÇÃO 4: O QUE FAZEMOS (3 CARDS EM GRADE; EMPILHADOS NO CELULAR) -->
   <section class="lp-section bg-dallas-surface" id="solucoes">
     <div class="container">
       <div class="lp-section-header">
         <div class="lp-eyebrow">
           <span class="lp-eyebrow-dot"></span>
-          <span>O QUE FAZEMOS?</span>
+          <span>O QUE FAZEMOS</span>
         </div>
         <h2 class="lp-section-title">
-          A <span class="strong">AGENCY DALLAS</span> CRIA ESTRATÉGIAS DE MARKETING <span class="strong">SOB MEDIDA</span> PARA O SEU NEGÓCIO
+          Tudo o que o seu negócio precisa para <span class="strong">ser encontrado</span> e chamado no WhatsApp
         </h2>
         <p class="lp-section-desc">
-          Soluções completas e validadas para potencializar seus contatos e vendas:
+          O que você pode contratar com a gente:
         </p>
       </div>
-    </div>
 
-    <!-- SWIPER FULL-WIDTH WRAPPER -->
-    <div class="lp-carousel-section-wrapper">
-      
-      <!-- BOTÕES DE NAVEGAÇÃO -->
-      <div class="lp-carousel-nav-wrapper">
-        <button class="lp-swiper-prev" aria-label="Slide Anterior">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
-        <button class="lp-swiper-next" aria-label="Próximo Slide">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
+      <div class="lp-features-grid">
+        <!-- LANDING PAGE -->
+        <article class="lp-feature-card">
+          <div class="lp-feature-visual">
+            <img src="assets/foto-lp-720.jpg" alt="Landing page aberta no celular e no computador" class="lp-feature-img" width="720" height="720" loading="lazy" decoding="async">
+          </div>
+          <div class="lp-feature-content">
+            <h3 class="lp-feature-title">Landing page <span class="highlight-tag">de alta conversão</span></h3>
+            <ul class="lp-feature-bullets">
+              <li class="lp-feature-item">
+                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-text">
+                  <strong>Página completa:</strong> texto persuasivo, visual moderno e integração direta com o WhatsApp.
+                </div>
+              </li>
+              <li class="lp-feature-item">
+                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-text">
+                  <strong>Mais contatos:</strong> botões em toda a página que levam o visitante direto para a conversa com você.
+                </div>
+              </li>
+              <li class="lp-feature-item">
+                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-text">
+                  <strong>Rápida no celular:</strong> carrega em segundos em qualquer aparelho, sem perder visitantes.
+                </div>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- LINK NA BIO -->
+        <article class="lp-feature-card">
+          <div class="lp-feature-visual">
+            <img src="assets/foto-bio-720.jpg" alt="Link na bio aberto no celular" class="lp-feature-img" width="720" height="720" loading="lazy" decoding="async">
+          </div>
+          <div class="lp-feature-content">
+            <h3 class="lp-feature-title">Link na bio <span class="highlight-tag">estratégico</span></h3>
+            <ul class="lp-feature-bullets">
+              <li class="lp-feature-item">
+                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-text">
+                  <strong>Central de atendimento:</strong> serviços, catálogo e links organizados em um só lugar no Instagram.
+                </div>
+              </li>
+              <li class="lp-feature-item">
+                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-text">
+                  <strong>Primeira impressão forte:</strong> passe autoridade assim que o seguidor clicar na sua bio.
+                </div>
+              </li>
+              <li class="lp-feature-item">
+                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-text">
+                  <strong>Agendamento com 1 clique:</strong> botões de ação rápida que facilitam o contato.
+                </div>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- SEO E GOOGLE MEU NEGÓCIO -->
+        <article class="lp-feature-card">
+          <div class="lp-feature-visual">
+            <img src="assets/foto-google-720.jpg" alt="Perfil de empresa otimizado no Google" class="lp-feature-img" width="720" height="720" loading="lazy" decoding="async">
+          </div>
+          <div class="lp-feature-content">
+            <h3 class="lp-feature-title">Google <span class="highlight-tag">& SEO local</span></h3>
+            <ul class="lp-feature-bullets">
+              <li class="lp-feature-item">
+                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-text">
+                  <strong>Apareça nas pesquisas:</strong> palavras-chave configuradas para ser achado por quem procura o seu serviço.
+                </div>
+              </li>
+              <li class="lp-feature-item">
+                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-text">
+                  <strong>Google Maps & Meu Negócio:</strong> perfil otimizado para atrair clientes da sua cidade.
+                </div>
+              </li>
+              <li class="lp-feature-item">
+                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-text">
+                  <strong>Mais credibilidade:</strong> informações, rotas, avaliações e contatos sempre à mão.
+                </div>
+              </li>
+            </ul>
+          </div>
+        </article>
       </div>
-
-      <div class="swiper lp-swiper">
-        <div class="swiper-wrapper">
-          
-          <!-- SLIDE 1: LANDING PAGE -->
-          <div class="swiper-slide">
-            <div class="lp-feature-card">
-              <div class="lp-feature-content">
-                <h3 class="lp-feature-title">LANDING PAGE <span class="highlight-tag">DE ALTA CONVERSÃO</span></h3>
-                
-                <ul class="lp-feature-bullets">
-                  <li class="lp-feature-item">
-                    <div class="lp-feature-check">✓</div>
-                    <div class="lp-feature-text">
-                      <strong>Estruturamos toda a sua página:</strong> desde a cópia persuasiva e visual moderno até a integração direta no WhatsApp.
-                    </div>
-                  </li>
-                  <li class="lp-feature-item">
-                    <div class="lp-feature-check">✓</div>
-                    <div class="lp-feature-text">
-                      <strong>Aumentamos seus contatos diários:</strong> estrutura validada para transformar cliques em clientes prontos para comprar.
-                    </div>
-                  </li>
-                  <li class="lp-feature-item">
-                    <div class="lp-feature-check">✓</div>
-                    <div class="lp-feature-text">
-                      <strong>Carregamento ultra-rápido e mobile-first:</strong> experiência fluida em qualquer aparelho para zero perda de visitantes.
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="lp-feature-visual">
-                <img src="assets/foto-lp.jpg" alt="Landing Page" class="lp-feature-img">
-              </div>
-            </div>
-          </div>
-
-          <!-- SLIDE 2: LINK NA BIO -->
-          <div class="swiper-slide">
-            <div class="lp-feature-card">
-              <div class="lp-feature-content">
-                <h3 class="lp-feature-title">LINK NA BIO <span class="highlight-tag">ESTRATÉGICO</span></h3>
-                
-                <ul class="lp-feature-bullets">
-                  <li class="lp-feature-item">
-                    <div class="lp-feature-check">✓</div>
-                    <div class="lp-feature-text">
-                      <strong>Central inteligente de atendimento:</strong> organize seus serviços, catálogo e links em um painel interativo no Instagram.
-                    </div>
-                  </li>
-                  <li class="lp-feature-item">
-                    <div class="lp-feature-check">✓</div>
-                    <div class="lp-feature-text">
-                      <strong>Primeira impressão inesquecível:</strong> passe autoridade instantânea assim que o seguidor clicar na sua biografia.
-                    </div>
-                  </li>
-                  <li class="lp-feature-item">
-                    <div class="lp-feature-check">✓</div>
-                    <div class="lp-feature-text">
-                      <strong>Agendamentos com 1 clique:</strong> botões de ação rápida que facilitam o contato e aumentam suas conversões.
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="lp-feature-visual">
-                <img src="assets/foto-bio.jpg" alt="Link na Bio" class="lp-feature-img">
-              </div>
-            </div>
-          </div>
-
-
-
-          <!-- SLIDE 4: SEO E GOOGLE MEU NEGÓCIO -->
-          <div class="swiper-slide">
-            <div class="lp-feature-card">
-              <div class="lp-feature-content">
-                <h3 class="lp-feature-title">OTIMIZAÇÃO GOOGLE <span class="highlight-tag">& SEO LOCAL</span></h3>
-                
-                <ul class="lp-feature-bullets">
-                  <li class="lp-feature-item">
-                    <div class="lp-feature-check">✓</div>
-                    <div class="lp-feature-text">
-                      <strong>Apareça nas pesquisas do Google:</strong> configurações técnicas de palavras-chave para ser achado por quem procura seu serviço.
-                    </div>
-                  </li>
-                  <li class="lp-feature-item">
-                    <div class="lp-feature-check">✓</div>
-                    <div class="lp-feature-text">
-                      <strong>Google Maps & Meu Negócio:</strong> perfil 100% otimizado para atrair clientes da sua cidade e região.
-                    </div>
-                  </li>
-                  <li class="lp-feature-item">
-                    <div class="lp-feature-check">✓</div>
-                    <div class="lp-feature-text">
-                      <strong>Mais credibilidade nas buscas:</strong> informações completas, rotas, avaliações e contatos sempre acessíveis.
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
-              <div class="lp-feature-visual">
-                <img src="assets/foto-google.jpg" alt="Google SEO" class="lp-feature-img">
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- PAGINAÇÃO (DOTS) -->
-      <div class="lp-swiper-pagination"></div>
-
     </div>
   </section>
-
-
 
   <!-- SEÇÃO 5: PLANOS & COMBOS -->
   <section class="lp-section" id="combos">
@@ -482,7 +494,7 @@
           <span>TABELA DE COMBOS & PREÇOS</span>
         </div>
         <h2 class="lp-section-title">
-          VOCÊ <span class="strong">ESCOLHE</span> A <span class="strong">SOLUÇÃO CERTA</span> PARA A FASE QUE SUA EMPRESA <span class="strong">VIVE HOJE</span>
+          Escolha a <span class="strong">solução certa</span> para a fase do seu negócio
         </h2>
         <p class="lp-section-desc">
           Planos flexíveis, transparentes e com pagamento único. Sem mensalidades de servidor.
@@ -500,14 +512,14 @@
 
               <ul class="lp-pricing-bullets">
                 <li><strong>1 Landing Page</strong> de alta conversão</li>
-                <li>Integração direta com seu <strong>WhatsApp</strong></li>
-                <li>Design 100% responsivo e super leve</li>
-                <li>Entrega ágil em até 72 horas</li>
-                <li>Sem mensalidades de servidor</li>
+                <li>Botões direto para o seu <strong>WhatsApp</strong></li>
+                <li>Design responsivo e leve</li>
+                <li>Entrega em até 72 horas</li>
+                <li>Hospedagem inclusa, sem mensalidade</li>
               </ul>
             </div>
 
-            <a href="#formulario-conversao" class="btn-dallas-outline btn-full-width" data-combo-select="Combo 1: Básico que Funciona (LP Única)">
+            <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="btn-dallas-outline btn-full-width js-wa-direct" data-origem="combo" data-servico="Combo 1: Básico que Funciona (LP Única)">
               <span>Quero esse combo</span>
             </a>
           </div>
@@ -519,19 +531,18 @@
             <span class="lp-featured-badge">⭐ MAIS VENDIDO</span>
             <div>
               <div class="lp-combo-name text-white">COMBO 02</div>
-              <h3 class="lp-pricing-title">Presença Digital</h3>
+              <h3 class="lp-pricing-title">Presença no Instagram</h3>
               <div class="lp-price-val">R$ 297,00 <span>/ taxa única</span></div>
+              <p class="lp-pricing-lead">Tudo do Combo 01, mais:</p>
 
               <ul class="lp-pricing-bullets">
-                <li><strong>1 Landing Page</strong> de alta conversão</li>
-                <li>Integração direta com seu <strong>WhatsApp</strong></li>
-                <li>Design 100% responsivo e super leve</li>
-                <li><strong>SEO completo</strong> para aparecer no Google</li>
-                <li>Entrega expressa com suporte dedicado</li>
+                <li><strong>Link na Bio</strong> personalizado para o Instagram</li>
+                <li>Painel com seus serviços, contatos e botão de agendamento</li>
+                <li>Página e bio com a <strong>mesma identidade visual</strong></li>
               </ul>
             </div>
 
-            <a href="#formulario-conversao" class="btn-dallas-primary btn-full-width" data-combo-select="Combo 2: Presença Digital (Recomendado)">
+            <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="btn-dallas-primary btn-full-width js-wa-direct" data-origem="combo" data-servico="Combo 2: Presença no Instagram (LP + Link na Bio)">
               <span>Quero esse combo 🚀</span>
             </a>
           </div>
@@ -544,18 +555,16 @@
               <div class="lp-combo-name">COMBO 03</div>
               <h3 class="lp-pricing-title">Kit Autoridade Local</h3>
               <div class="lp-price-val">R$ 397,00 <span>/ taxa única</span></div>
+              <p class="lp-pricing-lead">Tudo do Combo 02, mais:</p>
 
               <ul class="lp-pricing-bullets">
-                <li><strong>1 Landing Page</strong> de alta conversão</li>
-                <li>Integração direta com seu <strong>WhatsApp</strong></li>
-                <li>Design 100% responsivo e super leve</li>
-                <li><strong>SEO completo</strong> para o Google</li>
+                <li><strong>SEO completo</strong> para aparecer no Google</li>
                 <li>Otimização do <strong>Google Meu Negócio & Maps</strong></li>
-                <li><strong>Painel de atendimento</strong> (Link na Bio)</li>
+                <li>Ideal para quem atende clientes da própria cidade</li>
               </ul>
             </div>
 
-            <a href="#formulario-conversao" class="btn-dallas-outline btn-full-width" data-combo-select="Combo 3: Kit Autoridade Local Completo">
+            <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="btn-dallas-outline btn-full-width js-wa-direct" data-origem="combo" data-servico="Combo 3: Kit Autoridade Local (LP + Link na Bio + Google)">
               <span>Quero esse combo</span>
             </a>
           </div>
@@ -564,46 +573,75 @@
 
       <!-- TABELA COMPARATIVA DE RECURSOS -->
       <div class="lp-table-wrapper">
-        <h3 class="h5 fw-bold text-white mb-4">Comparativo Detalhado de Recursos</h3>
+        <h3 class="h5 fw-bold text-white mb-4">Compare o que vem em cada combo</h3>
         <table class="lp-comparison-table">
           <thead>
             <tr>
-              <th>Recursos Inclusos</th>
+              <th>Recursos inclusos</th>
               <th>Básico que Funciona</th>
-              <th class="col-highlight">Presença Digital ⭐</th>
+              <th class="col-highlight">Presença no Instagram ⭐</th>
               <th>Kit Autoridade Local</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Landing Page de Alta Conversão</td>
+              <td>Landing page de alta conversão</td>
               <td><span class="lp-check-mark">✓</span></td>
               <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
               <td><span class="lp-check-mark">✓</span></td>
             </tr>
             <tr>
-              <td>Integração com WhatsApp Comercial</td>
+              <td>Botões direto para o seu WhatsApp</td>
               <td><span class="lp-check-mark">✓</span></td>
               <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
               <td><span class="lp-check-mark">✓</span></td>
             </tr>
-
             <tr>
-              <td>Otimização SEO (Google)</td>
-              <td><span class="lp-cross-mark">—</span></td>
+              <td>Design responsivo e leve</td>
+              <td><span class="lp-check-mark">✓</span></td>
               <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
               <td><span class="lp-check-mark">✓</span></td>
             </tr>
             <tr>
-              <td>Otimização Google Meu Negócio / Maps</td>
-              <td><span class="lp-cross-mark">—</span></td>
-              <td class="col-highlight"><span class="lp-cross-mark">—</span></td>
+              <td>Entrega em até 72h</td>
+              <td><span class="lp-check-mark">✓</span></td>
+              <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
               <td><span class="lp-check-mark">✓</span></td>
             </tr>
             <tr>
-              <td>Link na Bio Personalizado (Painel)</td>
-              <td><span class="lp-cross-mark">—</span></td>
-              <td class="col-highlight"><span class="lp-cross-mark">—</span></td>
+              <td>Hospedagem inclusa, sem mensalidade</td>
+              <td><span class="lp-check-mark">✓</span></td>
+              <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-check-mark">✓</span></td>
+            </tr>
+            <tr>
+              <td>Link na bio personalizado (Instagram)</td>
+              <td><span class="lp-cross-mark">✕</span></td>
+              <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-check-mark">✓</span></td>
+            </tr>
+            <tr>
+              <td>Painel com serviços, contatos e botão de agendamento</td>
+              <td><span class="lp-cross-mark">✕</span></td>
+              <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-check-mark">✓</span></td>
+            </tr>
+            <tr>
+              <td>Página e bio com a mesma identidade visual</td>
+              <td><span class="lp-cross-mark">✕</span></td>
+              <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-check-mark">✓</span></td>
+            </tr>
+            <tr>
+              <td>SEO para aparecer no Google</td>
+              <td><span class="lp-cross-mark">✕</span></td>
+              <td class="col-highlight"><span class="lp-cross-mark">✕</span></td>
+              <td><span class="lp-check-mark">✓</span></td>
+            </tr>
+            <tr>
+              <td>Google Meu Negócio / Maps otimizado</td>
+              <td><span class="lp-cross-mark">✕</span></td>
+              <td class="col-highlight"><span class="lp-cross-mark">✕</span></td>
               <td><span class="lp-check-mark">✓</span></td>
             </tr>
           </tbody>
@@ -619,22 +657,21 @@
       <div class="lp-cta-banner">
         <div class="lp-eyebrow mb-3">
           <span class="lp-eyebrow-dot"></span>
-          <span>👤 RECEBA UM TIME EXCLUSIVO</span>
+          <span>RECEBA UM TIME EXCLUSIVO</span>
         </div>
         <h2 class="lp-cta-title">
-          PARE DE PERDER CLIENTES PARA CONCORRENTES COM SITES MAIS MODERNOS
+          Pare de perder clientes para concorrentes com sites mais modernos
         </h2>
         <p class="lp-cta-desc">
-          Na Agency Dallas, combinamos design de alto padrão, velocidade extrema e estratégia de conversão direta para o seu WhatsApp. Você cuida do seu negócio, e nós transformamos seus visitantes em compradores.
+          Uma página rápida, bonita no celular e com botões direto para o seu WhatsApp. Você cuida do seu negócio, e a gente entrega a página pronta em até 72h.
         </p>
         <div class="d-flex flex-column align-items-center gap-3">
-          <a href="#formulario-conversao" class="btn-dallas-primary">
-            <span>Quero mais informações</span>
+          <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="btn-dallas-primary js-wa-direct" data-origem="cta-final">
+            <span>Quero minha página</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
           </a>
-          <div class="d-flex align-items-center gap-2 text-dark fs-6">
-            <span class="rounded-circle bg-success d-inline-block" style="width: 8px; height: 8px; animation: pulse-green 2s infinite;"></span>
-            <span>Especialistas online agora</span>
+          <div class="text-dark fs-6">
+            A partir de R$ 197 · Pagamento único · Sem mensalidade
           </div>
         </div>
       </div>
@@ -650,10 +687,10 @@
           <span>PERGUNTAS FREQUENTES</span>
         </div>
         <h2 class="lp-section-title">
-          Ficou com alguma dúvida sobre a Dallas? <span class="strong">Talvez ela esteja aqui.</span>
+          Tire suas dúvidas <span class="strong">antes de começar.</span>
         </h2>
         <p class="lp-section-desc">
-          Clique nas perguntas para ver respostas claras e diretas:
+          O que mais nos perguntam antes de fechar a página.
         </p>
       </div>
 
@@ -662,12 +699,12 @@
         <div class="lp-faq-item active">
           <div class="lp-faq-header">
             <div class="lp-faq-question">
-              <span>O que exatamente a Agency Dallas faz?</span>
+              <span>Tem mensalidade?</span>
             </div>
             <div class="lp-faq-icon">↓</div>
           </div>
           <div class="lp-faq-body" style="display: block;">
-            Somos uma agência especializada em alta conversão. Criamos landing pages de alto padrão, links na bio estratégicos e otimização para o Google para que empresas e autônomos recebam contatos qualificados e fechem mais vendas todos os dias pelo WhatsApp.
+            Não. O pagamento é único pelo seu projeto, e a hospedagem já está inclusa, sem custos adicionais.
           </div>
         </div>
 
@@ -675,12 +712,12 @@
         <div class="lp-faq-item">
           <div class="lp-faq-header">
             <div class="lp-faq-question">
-              <span>Em quanto tempo meu projeto fica pronto?</span>
+              <span>Preciso pagar domínio?</span>
             </div>
             <div class="lp-faq-icon">↓</div>
           </div>
           <div class="lp-faq-body">
-            Trabalhamos com agilidade recorde. Nossos projetos de landing page são entregues em até 72 horas após o envio das informações essenciais do seu negócio.
+            Não é obrigatório. Sua página vai ao ar com um endereço gratuito (ex: <em>seunome.netlify.app</em>). Se quiser um domínio próprio, como <em>seunome.com.br</em>, ele é comprado à parte por você (cerca de R$ 40 por ano no Registro.br) e a gente configura tudo.
           </div>
         </div>
 
@@ -688,12 +725,12 @@
         <div class="lp-faq-item">
           <div class="lp-faq-header">
             <div class="lp-faq-question">
-              <span>Existe alguma mensalidade oculta?</span>
+              <span>Em quanto tempo minha página fica pronta?</span>
             </div>
             <div class="lp-faq-icon">↓</div>
           </div>
           <div class="lp-faq-body">
-            Não! Nosso modelo de pagamento é único pelo projeto. Você não fica preso a mensalidades caras de servidores ou taxas de manutenção obrigatórias.
+            Em até 72h a partir do início do projeto.
           </div>
         </div>
 
@@ -701,12 +738,12 @@
         <div class="lp-faq-item">
           <div class="lp-faq-header">
             <div class="lp-faq-question">
-              <span>Vocês atendem qualquer tipo de empresa ou região?</span>
+              <span>Posso pedir ajustes depois da entrega?</span>
             </div>
             <div class="lp-faq-icon">↓</div>
           </div>
           <div class="lp-faq-body">
-            Sim! Atendemos negócios em geral de todo o Brasil (Advocacia, Saúde, Gastronomia, Estética, Imobiliárias, Serviços e Comércio em geral), com atendimento personalizado, rápido e eficiente.
+            Sim. Depois de receber a página, você tem 24h para pedir os ajustes que quiser.
           </div>
         </div>
 
@@ -714,12 +751,25 @@
         <div class="lp-faq-item">
           <div class="lp-faq-header">
             <div class="lp-faq-question">
-              <span>A Dallas cuida da gestão de redes sociais?</span>
+              <span>A página funciona no celular?</span>
             </div>
             <div class="lp-faq-icon">↓</div>
           </div>
           <div class="lp-faq-body">
-            Nosso foco principal é a criação de Landing Pages de alta conversão, Link na Bio e Otimização para o Google. Não realizamos gestão contínua de redes sociais nem anúncios pagos.
+            Sim. Todas as páginas são 100% responsivas: funcionam no celular, no tablet e no computador.
+          </div>
+        </div>
+
+        <!-- ITEM 6 -->
+        <div class="lp-faq-item">
+          <div class="lp-faq-header">
+            <div class="lp-faq-question">
+              <span>Como faço para começar?</span>
+            </div>
+            <div class="lp-faq-icon">↓</div>
+          </div>
+          <div class="lp-faq-body">
+            Chame a gente no WhatsApp. Você recebe uma proposta personalizada, sem compromisso.
           </div>
         </div>
       </div>
@@ -731,7 +781,7 @@
     <div class="container">
       <div class="lp-footer-content">
         <a href="#topo" class="lp-logo-brand">
-          <img src="assets/logo-dallas.png" alt="Agency Dallas" class="img-fluid" style="max-height: 40px;">
+          <img src="assets/logo-dallas.png" alt="Agency Dallas" width="40" height="40" style="height: 40px; width: auto;">
           <span>AGENCY DALLAS</span>
         </a>
 
@@ -742,7 +792,7 @@
           <a href="https://www.linkedin.com/company/145204387/" target="_blank" rel="noopener" class="lp-social-btn" aria-label="LinkedIn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
           </a>
-          <a href="#formulario-conversao" class="lp-social-btn" aria-label="WhatsApp">
+          <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="lp-social-btn js-wa-direct" data-origem="rodape" aria-label="WhatsApp">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
           </a>
           <a href="mailto:agencydallasbr@gmail.com" class="lp-social-btn" aria-label="E-mail">
@@ -757,15 +807,31 @@
     </div>
   </footer>
 
+  <!-- Netlify Forms: registra cada clique que abre o WhatsApp direto (teste A/B). Fica oculto; o JS envia os dados. -->
+  <form name="clique-whatsapp" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="clique-whatsapp">
+    <input name="bot-field">
+    <input name="variante">
+    <input name="origem">
+    <input name="servico">
+    <input name="utm_source">
+    <input name="utm_medium">
+    <input name="utm_campaign">
+    <input name="utm_content">
+    <input name="fbclid">
+    <input name="gclid">
+  </form>
+
+  <!-- BOTÃO FLUTUANTE DE WHATSAPP -->
+  <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="lp-wa-float js-wa-direct" data-origem="flutuante" aria-label="Falar no WhatsApp">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.05 21.5h-.01a9.45 9.45 0 0 1-4.82-1.32l-.35-.21-3.58.94.96-3.49-.23-.36a9.43 9.43 0 0 1-1.45-5.03c0-5.21 4.24-9.45 9.46-9.45a9.4 9.4 0 0 1 6.69 2.77 9.4 9.4 0 0 1 2.76 6.69c0 5.21-4.24 9.45-9.45 9.45zm8.04-17.49A11.3 11.3 0 0 0 12.05.67C5.78.67.68 5.77.68 12.04c0 2 .52 3.96 1.52 5.68L.58 23.33l5.74-1.5a11.33 11.33 0 0 0 5.72 1.46h.01c6.26 0 11.36-5.1 11.37-11.37 0-3.04-1.18-5.89-3.33-8.04z"/></svg>
+    <span>Fale com a gente</span>
+  </a>
 
 
-  <!-- jQuery, Bootstrap & Swiper Scripts -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-  <!-- Custom Script -->
-  <script src="js/script.js"></script>
+  <!-- Custom Script (JS puro, sem bibliotecas) -->
+  <script src="js/script.js" defer></script>
 </body>
 
 </html>
