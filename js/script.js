@@ -101,24 +101,23 @@ $(document).ready(function () {
   $('#conversion-form').on('submit', function (e) {
     e.preventDefault();
 
-    const nome = $('#form-field-nome').val().trim();
-    const email = $('#form-field-email').val().trim();
-    const telefone = $('#form-field-telefone').val().trim();
-    const segmento = $('#form-field-segmento').val();
-    const servico = $('#form-field-servico').val();
+    const nome = $('#form-field-nome').length ? $('#form-field-nome').val().trim() : '';
+    const email = $('#form-field-email').length ? $('#form-field-email').val().trim() : '';
+    const telefone = $('#form-field-telefone').length ? $('#form-field-telefone').val().trim() : '';
+    const segmento = $('#form-field-segmento').length ? $('#form-field-segmento').val() : '';
+    const servico = $('#form-field-servico').length ? $('#form-field-servico').val() : '';
 
     // Feedback visual no botão
     const $submitBtn = $(this).find('button[type="submit"]');
-    const textoOriginal = $submitBtn.html();
     $submitBtn.html('<span>ENVIANDO...</span>').prop('disabled', true);
 
     // Monta texto formatado para envio para WhatsApp
     let msg = `Olá! Fiquei interessado nos serviços da Agency Dallas e gostaria de mais informações.\n\n`;
-    msg += `*Nome:* ${nome}\n`;
-    msg += `*E-mail:* ${email}\n`;
-    msg += `*Telefone:* ${telefone}\n`;
-    msg += `*Segmento:* ${segmento}\n`;
-    msg += `*Interesse:* ${servico}\n`;
+    if (nome) msg += `*Nome:* ${nome}\n`;
+    if (telefone) msg += `*WhatsApp:* ${telefone}\n`;
+    if (segmento) msg += `*Segmento:* ${segmento}\n`;
+    if (servico) msg += `*Plano de Interesse:* ${servico}\n`;
+    if (email) msg += `*E-mail:* ${email}\n`;
 
     if (utmData.utm_source) {
       msg += `\n*Origem:* ${utmData.utm_source} | Campanha: ${utmData.utm_campaign || 'N/A'}`;
@@ -274,18 +273,16 @@ $(document).ready(function () {
       });
     }, { root: null, rootMargin: '400px 0px', threshold: 0 });
 
-    // Pausa o vídeo já em reprodução quando o card sai significativamente da tela
+    // Pausa o vídeo se o card sair da tela
     const playbackObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         const player = players.get(entry.target);
         if (!player || typeof player.pauseVideo !== 'function') return;
-        if (entry.intersectionRatio >= 0.4) {
-          player.playVideo();
-        } else {
+        if (!entry.isIntersecting) {
           player.pauseVideo();
         }
       });
-    }, { root: null, threshold: [0, 0.4] });
+    }, { root: null, threshold: 0 });
 
     shortCards.forEach(function (card) {
       loadObserver.observe(card);
