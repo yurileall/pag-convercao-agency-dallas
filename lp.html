@@ -33,8 +33,26 @@
 </head>
 
 <body data-variante="B">
+  <!-- Ícone de check: desenhado uma vez aqui e reaproveitado na página com <use> -->
+  <svg width="0" height="0" style="position: absolute;" aria-hidden="true">
+    <symbol id="ico-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></symbol>
+  </svg>
 
-  <!-- HERO SECTION + BOTÃO DIRETO PARA O WHATSAPP -->
+  <!-- BARRA FIXA DO TOPO: só no desktop, aparece depois que o hero sai da tela (JS) -->
+  <div class="lp-topbar" id="lp-topbar">
+    <div class="container lp-topbar-inner">
+      <a href="#topo" class="lp-logo-brand">
+        <img src="assets/logo-dallas.png" alt="Agency Dallas" width="28" height="28" style="height: 28px; width: auto;">
+        <span>AGENCY DALLAS</span>
+      </a>
+      <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="btn-dallas-primary js-wa-direct" data-origem="barra-topo">
+        <span>Quero minha página</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO SECTION + MOCKUP DE PÁGINAS ENTREGUES (as telas trocam sozinhas de projeto: vitrine do hero, no JS) -->
   <header class="lp-section-hero" id="topo">
     <div class="container">
       <div class="row align-items-center g-5">
@@ -63,15 +81,15 @@
 
           <ul class="lp-check-list">
             <li>
-              <span class="lp-check-icon">✓</span>
+              <span class="lp-check-icon"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span>
               <span>Pagamento único, com hospedagem inclusa</span>
             </li>
             <li>
-              <span class="lp-check-icon">✓</span>
+              <span class="lp-check-icon"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span>
               <span>Botões que levam o visitante direto para o seu WhatsApp</span>
             </li>
             <li>
-              <span class="lp-check-icon">✓</span>
+              <span class="lp-check-icon"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span>
               <span>24h após a entrega para pedir os ajustes que quiser</span>
             </li>
           </ul>
@@ -87,32 +105,30 @@
           </div>
         </div>
 
-        <!-- LADO DIREITO: BOTÃO DIRETO PARA O WHATSAPP (VERSÃO B DO TESTE A/B) -->
+        <!-- LADO DIREITO: MOCKUP COM PÁGINAS ENTREGUES (mesmas imagens da galeria; passe o mouse para rolar) -->
         <div class="col-lg-6">
-          <div class="lp-form-card" id="formulario-conversao">
-            <h2 class="lp-form-title">Fale agora com a gente no WhatsApp</h2>
-            <p class="lp-form-subtitle">Clique no botão e a conversa abre no seu WhatsApp com a mensagem pronta. Você recebe uma proposta personalizada, sem compromisso.</p>
-
-            <ul class="lp-check-list mb-0">
-              <li>
-                <span class="lp-check-icon">✓</span>
-                <span>Sem cadastro: você fala direto com a gente</span>
-              </li>
-              <li>
-                <span class="lp-check-icon">✓</span>
-                <span>Página pronta em até 72h</span>
-              </li>
-              <li>
-                <span class="lp-check-icon">✓</span>
-                <span>A partir de R$ 197, pagamento único</span>
-              </li>
-            </ul>
-
-            <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="lp-form-submit-btn mt-3 js-wa-direct" data-origem="hero-card">
-              <span>Chamar no WhatsApp agora</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
-          </div>
+          <a href="#portfolio" class="lp-hero-mockup" aria-label="Ver páginas que entregamos">
+            <div class="lp-hero-browser">
+              <div class="lp-hero-browser-bar" aria-hidden="true">
+                <span></span><span></span><span></span>
+                <strong class="lp-hero-label">Landing page</strong>
+              </div>
+              <div class="lp-hero-screen">
+                <img class="lp-is-active" src="assets/galeria/rafael-baiao.webp" alt="Landing page entregue para o advogado Dr. Rafael Baião" decoding="async">
+                <img data-src="assets/galeria/evelyn-fernanda.webp" alt="Landing page entregue para a psicóloga Dra. Evelyn Fernanda" decoding="async">
+                <img data-src="assets/galeria/agency-dallas.webp" alt="Site oficial da Agency Dallas" decoding="async">
+              </div>
+            </div>
+            <div class="lp-hero-phone">
+              <strong class="lp-hero-label" aria-hidden="true">Link na bio</strong>
+              <div class="lp-hero-screen">
+                <img class="lp-is-active" src="assets/galeria/andreza-rodrigues-bio.webp" alt="Link na bio entregue para a Dra. Andreza Rodrigues" decoding="async">
+                <img data-src="assets/galeria/evelyn-fernanda-bio.webp" alt="Link na bio entregue para a Dra. Evelyn Fernanda" decoding="async">
+                <img data-src="assets/galeria/agency-dallas-bio.webp" alt="Link na bio da Agency Dallas" decoding="async">
+              </div>
+            </div>
+            <span class="lp-hero-mockup-tag">Páginas reais, entregues a clientes</span>
+          </a>
         </div>
 
       </div>
@@ -123,12 +139,12 @@
   <section class="lp-marquee-container">
     <div class="lp-marquee-track-1">
       <div class="marquee-content">
-        +50 PROJETOS ENTREGUES &nbsp;•&nbsp; +100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp; A PARTIR DE R$ 197 &nbsp;•&nbsp; +50 PROJETOS ENTREGUES &nbsp;•&nbsp; +100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp;
+        +50 PROJETOS ENTREGUES &nbsp;•&nbsp; 100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp; A PARTIR DE R$ 197 &nbsp;•&nbsp; +50 PROJETOS ENTREGUES &nbsp;•&nbsp; 100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp;
       </div>
     </div>
     <div class="lp-marquee-track-2">
       <div class="marquee-content">
-        +50 PROJETOS ENTREGUES &nbsp;•&nbsp; +100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp; A PARTIR DE R$ 197 &nbsp;•&nbsp; +50 PROJETOS ENTREGUES &nbsp;•&nbsp; +100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp;
+        +50 PROJETOS ENTREGUES &nbsp;•&nbsp; 100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp; A PARTIR DE R$ 197 &nbsp;•&nbsp; +50 PROJETOS ENTREGUES &nbsp;•&nbsp; 100% RESPONSIVO &nbsp;•&nbsp; ENTREGA RÁPIDA EM ATÉ 72H &nbsp;•&nbsp; SEM MENSALIDADE DE SERVIDOR &nbsp;•&nbsp; ATENDIMENTO EM TODO O BRASIL &nbsp;•&nbsp;
       </div>
     </div>
   </section>
@@ -145,22 +161,12 @@
           Veja páginas que entregamos para <span class="strong">diferentes nichos</span>
         </h2>
         <p class="lp-section-desc">
-          A imagem fala por si: veja cada página do topo ao fim. Passe o mouse (ou arraste, no celular) para rolar.
+          A imagem fala por si: veja cada página do topo ao fim. Passe o mouse para rolar a página; no celular, arraste para o lado para ver os projetos.
         </p>
       </div>
 
       <!-- GALERIA: páginas inteiras dos projetos (passe o mouse para rolar) -->
       <div class="lp-gallery-columns">
-        <a class="lp-gallery-item" href="https://agencydallas.netlify.app/" target="_blank" rel="noopener">
-          <div class="lp-gallery-window">
-            <img src="assets/galeria/agency-dallas.webp" alt="Página completa do site oficial da Agency Dallas" loading="lazy">
-          </div>
-          <div class="lp-gallery-caption">
-            <span class="lp-gallery-niche">Landing Page Oficial</span>
-            <h3>Site Oficial • Agency Dallas</h3>
-            <span class="lp-gallery-link">Ver site ao vivo ↗</span>
-          </div>
-        </a>
         <a class="lp-gallery-item" href="https://psicologaevelynfernanda.netlify.app/" target="_blank" rel="noopener">
           <div class="lp-gallery-window">
             <img src="assets/galeria/evelyn-fernanda.webp" alt="Página completa da landing page da Dra. Evelyn Fernanda" loading="lazy">
@@ -168,6 +174,16 @@
           <div class="lp-gallery-caption">
             <span class="lp-gallery-niche">Saúde &amp; Psicologia</span>
             <h3>Psicóloga • Dra. Evelyn Fernanda</h3>
+            <span class="lp-gallery-link">Ver site ao vivo ↗</span>
+          </div>
+        </a>
+        <a class="lp-gallery-item" href="https://agencydallas.netlify.app/" target="_blank" rel="noopener">
+          <div class="lp-gallery-window">
+            <img src="assets/galeria/agency-dallas.webp" alt="Página completa do site oficial da Agency Dallas" loading="lazy">
+          </div>
+          <div class="lp-gallery-caption">
+            <span class="lp-gallery-niche">Landing Page Oficial</span>
+            <h3>Site Oficial • Agency Dallas</h3>
             <span class="lp-gallery-link">Ver site ao vivo ↗</span>
           </div>
         </a>
@@ -188,17 +204,6 @@
         <p>Páginas feitas para o celular, direto da bio do Instagram.</p>
       </div>
       <div class="lp-gallery-phones">
-        <a class="lp-gallery-phone" href="https://agencydallasbio.netlify.app/" target="_blank" rel="noopener">
-          <div class="lp-gallery-phone-frame">
-            <div class="lp-gallery-window lp-gallery-window--phone">
-              <img src="assets/galeria/agency-dallas-bio.webp" alt="Link na Bio da Agency Dallas" loading="lazy">
-            </div>
-          </div>
-          <div class="lp-gallery-caption">
-            <h3>Link na Bio • Agency Dallas</h3>
-            <span class="lp-gallery-link">Ver ao vivo ↗</span>
-          </div>
-        </a>
         <a class="lp-gallery-phone" href="https://evelynfernandabio.netlify.app/" target="_blank" rel="noopener">
           <div class="lp-gallery-phone-frame">
             <div class="lp-gallery-window lp-gallery-window--phone">
@@ -207,6 +212,17 @@
           </div>
           <div class="lp-gallery-caption">
             <h3>Link na Bio • Dra. Evelyn Fernanda</h3>
+            <span class="lp-gallery-link">Ver ao vivo ↗</span>
+          </div>
+        </a>
+        <a class="lp-gallery-phone" href="https://agencydallasbio.netlify.app/" target="_blank" rel="noopener">
+          <div class="lp-gallery-phone-frame">
+            <div class="lp-gallery-window lp-gallery-window--phone">
+              <img src="assets/galeria/agency-dallas-bio.webp" alt="Link na Bio da Agency Dallas" loading="lazy">
+            </div>
+          </div>
+          <div class="lp-gallery-caption">
+            <h3>Link na Bio • Agency Dallas</h3>
             <span class="lp-gallery-link">Ver ao vivo ↗</span>
           </div>
         </a>
@@ -287,6 +303,18 @@
               Sem mensalidade e sem semanas de espera: você paga uma vez, recebe a página em até 72h e cada botão leva o visitante direto para o seu WhatsApp.
             </p>
 
+            <!-- ROSTO DA AGÊNCIA: salve a foto em assets/foto-time.jpg (quadrada, a partir de 240×240).
+                 Enquanto o arquivo não existir, o JS esconde este bloco para não aparecer imagem quebrada. -->
+            <figure class="lp-about-person">
+              <img src="assets/foto-time.jpg" alt="Time da Agency Dallas" width="120" height="120" decoding="async">
+              <figcaption>
+                <strong>Time Agency Dallas</strong>
+                <span>É com a gente que você fala no WhatsApp, do primeiro contato à página no ar.</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="col-lg-6">
             <div class="lp-stats-grid">
               <div class="lp-stat-box">
                 <div class="lp-stat-number">+50</div>
@@ -305,22 +333,9 @@
                 <div class="lp-stat-label">Mensalidades</div>
               </div>
             </div>
-          </div>
-
-          <div class="col-lg-6 text-center">
-            <div class="p-4 bg-dallas-black border-dallas border rounded-4 text-start">
-              <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
-                <span class="badge bg-light text-dark fw-bold px-3 py-2">ESTRUTURA DALLAS</span>
-                <span class="badge border text-light px-3 py-2">ATENDIMENTO BRASIL</span>
-              </div>
-              <h3 class="h4 text-white fw-bold mb-3">Tecnologia, Design & Vendas em Sintonia</h3>
-              <p class="text-dallas-light fs-6 mb-4">
-                Cada projeto é construído com código leve, otimização SEO e arquitetura mobile-first para garantir que seus visitantes se transformem em compradores reais.
-              </p>
-              <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="btn-dallas-primary w-100 js-wa-direct" data-origem="sobre">
-                <span>Falar com nosso time agora</span>
-              </a>
-            </div>
+            <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="btn-dallas-primary w-100 mt-4 js-wa-direct" data-origem="sobre">
+              <span>Falar com nosso time agora</span>
+            </a>
           </div>
         </div>
       </div>
@@ -345,22 +360,34 @@
 
       <div class="lp-steps-grid">
         <div class="lp-step-card">
-          <div class="lp-step-number">01</div>
+          <div class="lp-step-top">
+            <div class="lp-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></div>
+            <div class="lp-step-number">01</div>
+          </div>
           <h3 class="lp-step-title">Você manda as informações</h3>
           <p class="lp-step-text">Pelo WhatsApp mesmo: seus serviços, fotos, contatos e o que quer destacar.</p>
         </div>
         <div class="lp-step-card">
-          <div class="lp-step-number">02</div>
+          <div class="lp-step-top">
+            <div class="lp-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg></div>
+            <div class="lp-step-number">02</div>
+          </div>
           <h3 class="lp-step-title">Criamos em até 72h</h3>
           <p class="lp-step-text">Montamos o texto, o visual e os botões que levam direto para o seu WhatsApp.</p>
         </div>
         <div class="lp-step-card">
-          <div class="lp-step-number">03</div>
+          <div class="lp-step-top">
+            <div class="lp-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div>
+            <div class="lp-step-number">03</div>
+          </div>
           <h3 class="lp-step-title">Você pede ajustes</h3>
           <p class="lp-step-text">Depois de receber a página, você tem 24h para pedir os ajustes que quiser.</p>
         </div>
-        <div class="lp-step-card">
-          <div class="lp-step-number">04</div>
+        <div class="lp-step-card lp-step-card--final">
+          <div class="lp-step-top">
+            <div class="lp-step-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+            <div class="lp-step-number">04</div>
+          </div>
           <h3 class="lp-step-title">Página no ar</h3>
           <p class="lp-step-text">Publicada e pronta para receber clientes, sem mensalidade.</p>
         </div>
@@ -396,24 +423,25 @@
         <article class="lp-feature-card">
           <div class="lp-feature-visual">
             <img src="assets/foto-lp-720.jpg" alt="Landing page aberta no celular e no computador" class="lp-feature-img" width="720" height="720" loading="lazy" decoding="async">
+            <span class="lp-feature-tag">Site</span>
           </div>
           <div class="lp-feature-content">
             <h3 class="lp-feature-title">Landing page <span class="highlight-tag">de alta conversão</span></h3>
             <ul class="lp-feature-bullets">
               <li class="lp-feature-item">
-                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-check"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></div>
                 <div class="lp-feature-text">
                   <strong>Página completa:</strong> texto persuasivo, visual moderno e integração direta com o WhatsApp.
                 </div>
               </li>
               <li class="lp-feature-item">
-                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-check"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></div>
                 <div class="lp-feature-text">
                   <strong>Mais contatos:</strong> botões em toda a página que levam o visitante direto para a conversa com você.
                 </div>
               </li>
               <li class="lp-feature-item">
-                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-check"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></div>
                 <div class="lp-feature-text">
                   <strong>Rápida no celular:</strong> carrega em segundos em qualquer aparelho, sem perder visitantes.
                 </div>
@@ -426,24 +454,25 @@
         <article class="lp-feature-card">
           <div class="lp-feature-visual">
             <img src="assets/foto-bio-720.jpg" alt="Link na bio aberto no celular" class="lp-feature-img" width="720" height="720" loading="lazy" decoding="async">
+            <span class="lp-feature-tag">Instagram</span>
           </div>
           <div class="lp-feature-content">
             <h3 class="lp-feature-title">Link na bio <span class="highlight-tag">estratégico</span></h3>
             <ul class="lp-feature-bullets">
               <li class="lp-feature-item">
-                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-check"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></div>
                 <div class="lp-feature-text">
                   <strong>Central de atendimento:</strong> serviços, catálogo e links organizados em um só lugar no Instagram.
                 </div>
               </li>
               <li class="lp-feature-item">
-                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-check"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></div>
                 <div class="lp-feature-text">
                   <strong>Primeira impressão forte:</strong> passe autoridade assim que o seguidor clicar na sua bio.
                 </div>
               </li>
               <li class="lp-feature-item">
-                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-check"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></div>
                 <div class="lp-feature-text">
                   <strong>Agendamento com 1 clique:</strong> botões de ação rápida que facilitam o contato.
                 </div>
@@ -456,24 +485,25 @@
         <article class="lp-feature-card">
           <div class="lp-feature-visual">
             <img src="assets/foto-google-720.jpg" alt="Perfil de empresa otimizado no Google" class="lp-feature-img" width="720" height="720" loading="lazy" decoding="async">
+            <span class="lp-feature-tag">Google</span>
           </div>
           <div class="lp-feature-content">
             <h3 class="lp-feature-title">Google <span class="highlight-tag">& SEO local</span></h3>
             <ul class="lp-feature-bullets">
               <li class="lp-feature-item">
-                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-check"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></div>
                 <div class="lp-feature-text">
                   <strong>Apareça nas pesquisas:</strong> palavras-chave configuradas para ser achado por quem procura o seu serviço.
                 </div>
               </li>
               <li class="lp-feature-item">
-                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-check"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></div>
                 <div class="lp-feature-text">
                   <strong>Google Maps & Meu Negócio:</strong> perfil otimizado para atrair clientes da sua cidade.
                 </div>
               </li>
               <li class="lp-feature-item">
-                <div class="lp-feature-check">✓</div>
+                <div class="lp-feature-check"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></div>
                 <div class="lp-feature-text">
                   <strong>Mais credibilidade:</strong> informações, rotas, avaliações e contatos sempre à mão.
                 </div>
@@ -508,7 +538,7 @@
             <div>
               <div class="lp-combo-name">COMBO 01</div>
               <h3 class="lp-pricing-title">Básico que Funciona</h3>
-              <div class="lp-price-val">R$ 197,90 <span>/ taxa única</span></div>
+              <div class="lp-price-val"><span class="lp-price-currency">R$</span>197<span class="lp-price-cents">,90</span><span class="lp-price-period">/ taxa única</span></div>
 
               <ul class="lp-pricing-bullets">
                 <li><strong>1 Landing Page</strong> de alta conversão</li>
@@ -528,11 +558,11 @@
         <!-- COMBO 2 (FEATURED) -->
         <div class="col-lg-4">
           <div class="lp-pricing-card featured">
-            <span class="lp-featured-badge">⭐ MAIS VENDIDO</span>
+            <span class="lp-featured-badge">MAIS VENDIDO</span>
             <div>
               <div class="lp-combo-name text-white">COMBO 02</div>
               <h3 class="lp-pricing-title">Presença no Instagram</h3>
-              <div class="lp-price-val">R$ 297,00 <span>/ taxa única</span></div>
+              <div class="lp-price-val"><span class="lp-price-currency">R$</span>297<span class="lp-price-cents">,00</span><span class="lp-price-period">/ taxa única</span></div>
               <p class="lp-pricing-lead">Tudo do Combo 01, mais:</p>
 
               <ul class="lp-pricing-bullets">
@@ -543,7 +573,7 @@
             </div>
 
             <a href="https://api.whatsapp.com/send?phone=557191840986" target="_blank" rel="noopener" class="btn-dallas-primary btn-full-width js-wa-direct" data-origem="combo" data-servico="Combo 2: Presença no Instagram (LP + Link na Bio)">
-              <span>Quero esse combo 🚀</span>
+              <span>Quero esse combo</span>
             </a>
           </div>
         </div>
@@ -554,7 +584,7 @@
             <div>
               <div class="lp-combo-name">COMBO 03</div>
               <h3 class="lp-pricing-title">Kit Autoridade Local</h3>
-              <div class="lp-price-val">R$ 397,00 <span>/ taxa única</span></div>
+              <div class="lp-price-val"><span class="lp-price-currency">R$</span>397<span class="lp-price-cents">,00</span><span class="lp-price-period">/ taxa única</span></div>
               <p class="lp-pricing-lead">Tudo do Combo 02, mais:</p>
 
               <ul class="lp-pricing-bullets">
@@ -579,70 +609,70 @@
             <tr>
               <th>Recursos inclusos</th>
               <th>Básico que Funciona</th>
-              <th class="col-highlight">Presença no Instagram ⭐</th>
+              <th class="col-highlight">Presença no Instagram</th>
               <th>Kit Autoridade Local</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Landing page de alta conversão</td>
-              <td><span class="lp-check-mark">✓</span></td>
-              <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
-              <td><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
+              <td class="col-highlight"><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
             </tr>
             <tr>
               <td>Botões direto para o seu WhatsApp</td>
-              <td><span class="lp-check-mark">✓</span></td>
-              <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
-              <td><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
+              <td class="col-highlight"><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
             </tr>
             <tr>
               <td>Design responsivo e leve</td>
-              <td><span class="lp-check-mark">✓</span></td>
-              <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
-              <td><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
+              <td class="col-highlight"><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
             </tr>
             <tr>
               <td>Entrega em até 72h</td>
-              <td><span class="lp-check-mark">✓</span></td>
-              <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
-              <td><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
+              <td class="col-highlight"><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
             </tr>
             <tr>
               <td>Hospedagem inclusa, sem mensalidade</td>
-              <td><span class="lp-check-mark">✓</span></td>
-              <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
-              <td><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
+              <td class="col-highlight"><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
             </tr>
             <tr>
               <td>Link na bio personalizado (Instagram)</td>
-              <td><span class="lp-cross-mark">✕</span></td>
-              <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
-              <td><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-cross-mark" role="img" aria-label="Não incluso"></span></td>
+              <td class="col-highlight"><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
             </tr>
             <tr>
               <td>Painel com serviços, contatos e botão de agendamento</td>
-              <td><span class="lp-cross-mark">✕</span></td>
-              <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
-              <td><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-cross-mark" role="img" aria-label="Não incluso"></span></td>
+              <td class="col-highlight"><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
             </tr>
             <tr>
               <td>Página e bio com a mesma identidade visual</td>
-              <td><span class="lp-cross-mark">✕</span></td>
-              <td class="col-highlight"><span class="lp-check-mark">✓</span></td>
-              <td><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-cross-mark" role="img" aria-label="Não incluso"></span></td>
+              <td class="col-highlight"><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
             </tr>
             <tr>
               <td>SEO para aparecer no Google</td>
-              <td><span class="lp-cross-mark">✕</span></td>
-              <td class="col-highlight"><span class="lp-cross-mark">✕</span></td>
-              <td><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-cross-mark" role="img" aria-label="Não incluso"></span></td>
+              <td class="col-highlight"><span class="lp-cross-mark" role="img" aria-label="Não incluso"></span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
             </tr>
             <tr>
               <td>Google Meu Negócio / Maps otimizado</td>
-              <td><span class="lp-cross-mark">✕</span></td>
-              <td class="col-highlight"><span class="lp-cross-mark">✕</span></td>
-              <td><span class="lp-check-mark">✓</span></td>
+              <td><span class="lp-cross-mark" role="img" aria-label="Não incluso"></span></td>
+              <td class="col-highlight"><span class="lp-cross-mark" role="img" aria-label="Não incluso"></span></td>
+              <td><span class="lp-check-mark" role="img" aria-label="Incluso"><svg class="lp-ico-check" aria-hidden="true"><use href="#ico-check"></use></svg></span></td>
             </tr>
           </tbody>
         </table>
@@ -670,7 +700,7 @@
             <span>Quero minha página</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
           </a>
-          <div class="text-dark fs-6">
+          <div class="lp-cta-note">
             A partir de R$ 197 · Pagamento único · Sem mensalidade
           </div>
         </div>
@@ -802,7 +832,7 @@
       </div>
 
       <div class="lp-footer-copy">
-        2026 © <strong>AGENCY DALLAS</strong>. Todos os direitos reservados. · Salvador, BA / Atendimento Brasil 📍
+        2026 © <strong>AGENCY DALLAS</strong>. Todos os direitos reservados. · Salvador, BA / Atendimento Brasil
       </div>
     </div>
   </footer>

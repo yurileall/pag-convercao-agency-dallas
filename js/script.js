@@ -370,7 +370,100 @@ window.onYouTubeIframeAPIReady = function () {
     });
   })();
 
-  // 8. ANIMAÇÃO ON SCROLL (INTERSECTION OBSERVER)
+  // 8. VITRINE DO PORTFÓLIO (celular/tablet): o carrossel avança sozinho, em loop.
+  // Os projetos são clonados antes e depois dos originais; quando a rolagem chega
+  // num clone, ela volta (sem animação) para o original igual, e o giro nunca acaba.
+  // No desktop os clones ficam escondidos pelo CSS e a galeria é uma grade parada.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const carouselQuery = window.matchMedia('(max-width: 991px)');
+  // Tempo (em ms) que cada projeto fica em destaque antes de a vitrine trocar.
+  // Vale para a galeria no celular e para o mockup do hero.
+  const VITRINE_INTERVALO = 2000;
+
+  $$('.lp-gallery-columns, .lp-gallery-phones').forEach(function (track) {
+    const originals = Array.from(track.children);
+    const total = originals.length;
+    if (total < 2) return;
+
+    [true, false].forEach(function (before) {
+      originals.forEach(function (item) {
+        const clone = item.cloneNode(true);
+        clone.classList.add('lp-gallery-clone');
+        clone.setAttribute('aria-hidden', 'true');
+        clone.tabIndex = -1;
+        track.insertBefore(clone, before ? originals[0] : null);
+      });
+    });
+
+    const items = Array.from(track.children);
+    // Começa no primeiro projeto (o da Dra. Evelyn); o da Agency Dallas vem logo depois, no meio
+    const startIndex = total;
+
+    function isCarousel() {
+      return track.scrollWidth > track.clientWidth + 1;
+    }
+
+    function goTo(index, smooth) {
+      const item = items[index];
+      const itemLeft = item.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
+      track.scrollTo({
+        left: itemLeft - (track.clientWidth - item.offsetWidth) / 2,
+        behavior: smooth ? 'smooth' : 'auto'
+      });
+    }
+
+    // Índice do projeto que está mais perto do centro do carrossel
+    function currentIndex() {
+      const middle = track.getBoundingClientRect().left + track.clientWidth / 2;
+      let best = 0;
+      let bestDistance = Infinity;
+      items.forEach(function (item, i) {
+        const rect = item.getBoundingClientRect();
+        const distance = Math.abs(rect.left + rect.width / 2 - middle);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          best = i;
+        }
+      });
+      return best;
+    }
+
+    if (isCarousel()) goTo(startIndex, false);
+    if (carouselQuery.addEventListener) {
+      carouselQuery.addEventListener('change', function (e) {
+        if (e.matches) goTo(startIndex, false);
+      });
+    }
+
+    if (reduceMotion) return;
+
+    let onScreen = false;
+    let pausedUntil = 0;
+
+    new IntersectionObserver(function (entries) {
+      onScreen = entries[0].isIntersecting;
+    }, { root: null, threshold: 0.3 }).observe(track);
+
+    // Se a pessoa mexer no carrossel, a vitrine espera um pouco antes de voltar a girar
+    ['touchstart', 'touchmove', 'pointerdown', 'wheel'].forEach(function (eventName) {
+      track.addEventListener(eventName, function () {
+        pausedUntil = Date.now() + VITRINE_INTERVALO;
+      }, { passive: true });
+    });
+
+    setInterval(function () {
+      if (!onScreen || document.hidden || !isCarousel() || Date.now() < pausedUntil) return;
+
+      let index = currentIndex();
+      if (index < total || index >= total * 2) {
+        index = total + (index % total);
+        goTo(index, false);
+      }
+      goTo(index + 1, true);
+    }, VITRINE_INTERVALO);
+  });
+
+  // 9. ANIMAÇÃO ON SCROLL (INTERSECTION OBSERVER)
   const scrollObserver = new IntersectionObserver(function (entries, observer) {
     entries.forEach(function (entry) {
       if (entry.isIntersecting) {
@@ -383,5 +476,65 @@ window.onYouTubeIframeAPIReady = function () {
   $$('.lp-section-header, .lp-gallery-columns, .lp-gallery-phones, .lp-short-card, .lp-about-card, .lp-steps-grid, .lp-feature-card, .lp-pricing-card, .lp-cta-banner, .lp-faq-accordion').forEach(function (el) {
     el.classList.add('lp-scroll-hidden');
     scrollObserver.observe(el);
+  });
+
+  // 10. BARRA FIXA DO TOPO (desktop): aparece quando o hero sai da tela.
+  // No celular o CSS mantém a barra escondida, então a classe não muda nada lá.
+  const topbar = $('#lp-topbar');
+  const hero = $('#topo');
+  let heroOnScreen = true;
+  if (hero) {
+    new IntersectionObserver(function (entries) {
+      heroOnScreen = entries[0].isIntersecting;
+      if (topbar) topbar.classList.toggle('lp-is-stuck', !heroOnScreen);
+    }, { root: null, threshold: 0 }).observe(hero);
+  }
+
+  // 11. VITRINE DO HERO: o navegador e o celular do mockup trocam sozinhos de projeto, em loop.
+  // Só a primeira imagem de cada tela vem no HTML com "src"; as outras têm "data-src" e são
+  // baixadas depois que a página termina de carregar, para não atrasar a primeira tela.
+  const heroMockup = $('.lp-hero-mockup');
+  if (heroMockup && !reduceMotion) {
+    const screens = Array.from(heroMockup.querySelectorAll('.lp-hero-screen')).map(function (screen) {
+      return Array.from(screen.querySelectorAll('img'));
+    });
+    let current = 0;
+
+    function loadHeroImages() {
+      heroMockup.querySelectorAll('img[data-src]').forEach(function (img) {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      });
+
+      setInterval(function () {
+        // Parado enquanto o hero está fora da tela ou a pessoa passa o mouse para rolar a página
+        if (!heroOnScreen || document.hidden || heroMockup.matches(':hover')) return;
+
+        const next = current + 1;
+        const ready = screens.every(function (imgs) {
+          const img = imgs[next % imgs.length];
+          return img.complete && img.naturalWidth > 0;
+        });
+        if (!ready) return;
+
+        screens.forEach(function (imgs) {
+          imgs[current % imgs.length].classList.remove('lp-is-active');
+          imgs[next % imgs.length].classList.add('lp-is-active');
+        });
+        current = next;
+      }, VITRINE_INTERVALO);
+    }
+
+    if (document.readyState === 'complete') loadHeroImages();
+    else window.addEventListener('load', loadHeroImages);
+  }
+
+  // 12. FOTO DE "QUEM SOMOS": se o arquivo da foto não existir, esconde o bloco
+  // inteiro para não aparecer imagem quebrada.
+  $$('.lp-about-person').forEach(function (person) {
+    const img = person.querySelector('img');
+    function hidePerson() { person.hidden = true; }
+    if (img.complete && img.naturalWidth === 0) hidePerson();
+    else img.addEventListener('error', hidePerson);
   });
 })();
