@@ -1,21 +1,21 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap');
 
 :root {
-  --color-black: #000000;
-  --color-dark: #080808;
-  --color-surface: #0f0f10;
-  --color-card: #141416;
-  --color-card-border: #232328;
-  --color-white: #F2F2F2;
-  --color-light-gray: #D6D6D6;
+  --color-black: #050505;
+  --color-dark: #0a0a0c;
+  --color-surface: #101216;
+  --color-card: #15181e;
+  --color-card-border: rgba(255, 255, 255, 0.08);
+  --color-white: #FFFFFF;
+  --color-light-gray: #CBD5E1;
   --color-slate: #6E7685;
-  --color-slate-light: #8B949E;
-  --color-slate-dark: #1F242C;
-  --color-slate-badge: rgba(110, 118, 133, 0.25);
+  --color-slate-light: #CBD5E1;
+  --color-slate-dark: #1E293B;
+  --color-slate-badge: rgba(255, 255, 255, 0.08);
   
   --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Space Grotesk', var(--font-main);
+  --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
   
   --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -94,7 +94,7 @@ body {
   background-color: var(--color-black);
   background-image: 
     radial-gradient(rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px),
-    radial-gradient(circle at 80% 45%, rgba(65, 75, 95, 0.5) 0%, transparent 65%),
+    radial-gradient(circle at 80% 45%, rgba(65, 75, 95, 0.4) 0%, transparent 65%),
     radial-gradient(circle at 15% 20%, rgba(55, 65, 82, 0.4) 0%, transparent 50%);
   background-size: 28px 28px, 100% 100%, 100% 100%;
 }
@@ -124,7 +124,7 @@ body {
   right: 10%;
   width: 520px;
   height: 520px;
-  background: radial-gradient(circle, rgba(0, 255, 0, 0.06) 0%, rgba(65, 75, 95, 0.1) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(65, 75, 95, 0.1) 40%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -144,10 +144,10 @@ body {
   gap: 12px;
   text-decoration: none;
   color: var(--color-white);
-  font-family: 'Arial Black', Impact, sans-serif;
-  font-weight: 900;
-  letter-spacing: -1px;
-  font-size: 1.3rem;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 1.35rem;
   text-transform: uppercase;
 }
 .lp-logo-symbol {
@@ -170,67 +170,84 @@ body {
   align-items: center;
   gap: 8px;
   padding: 6px 14px;
-  background-color: var(--color-slate-badge);
-  border: 1px solid var(--color-slate);
-  color: var(--color-white);
+  background: rgba(37, 211, 102, 0.08);
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  color: #25D366;
+  font-family: var(--font-display);
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
   border-radius: 50px;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .lp-eyebrow-dot {
   width: 7px;
   height: 7px;
-  background-color: var(--color-white);
+  background-color: #25D366;
   border-radius: 50%;
-  box-shadow: 0 0 8px var(--color-white);
+  box-shadow: 0 0 8px #25D366;
 }
 
 .lp-title-main {
   font-family: var(--font-display);
-  font-size: 2.85rem;
+  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
   font-weight: 800;
   line-height: 1.15;
   color: var(--color-white);
-  letter-spacing: -0.8px;
-  margin-bottom: 20px;
+  letter-spacing: -0.03em;
+  margin-bottom: 22px;
 }
 
 .lp-title-main .highlight {
-  color: var(--color-white);
-  text-decoration: underline;
-  text-decoration-color: var(--color-slate);
-  text-underline-offset: 6px;
+  color: #E2E8F0;
+  background: linear-gradient(135deg, #FFFFFF 20%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.lp-title-main .highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #94A3B8 0%, rgba(148, 163, 184, 0.2) 100%);
+  border-radius: 2px;
 }
 
 .lp-subtitle {
   font-size: 1.12rem;
-  color: var(--color-light-gray);
-  line-height: 1.65;
-  margin-bottom: 28px;
+  color: #94A3B8;
+  line-height: 1.7;
+  font-weight: 400;
+  margin-bottom: 30px;
+  letter-spacing: -0.01em;
 }
 
 /* Bullet list (Alpha style) */
 .lp-check-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 32px 0;
+  margin: 0 0 34px 0;
 }
 .lp-check-list li {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--color-white);
+  color: #F8FAFC;
   font-size: 1.02rem;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .lp-check-icon {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   background-color: var(--color-slate-dark);
   border: 1px solid var(--color-slate);
   color: var(--color-white);
@@ -239,6 +256,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  font-size: 0.85rem;
 }
 
 /* Buttons */
@@ -250,6 +268,7 @@ body {
   background-color: #25D366;
   color: #000000;
   border: 1px solid #25D366;
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: 0.98rem;
   padding: 15px 30px;
@@ -257,40 +276,28 @@ body {
   text-decoration: none;
   cursor: pointer;
   transition: var(--transition-smooth);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.15);
-  animation: pulse-green 2s infinite;
-}
-
-@keyframes pulse-green {
-  0% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-  }
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.2);
 }
 .btn-dallas-primary:hover {
   background-color: #1ebe57;
   color: #000000;
   border-color: #1ebe57;
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
 }
 
 .lp-social-whatsapp {
   background-color: #25D366;
   color: #000000;
   border-color: #25D366;
+  font-family: var(--font-display);
 }
 .lp-social-whatsapp:hover {
   background-color: #1ebe57;
   color: #000000;
   border-color: #1ebe57;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
 
 .btn-dallas-outline {
@@ -301,6 +308,7 @@ body {
   background-color: transparent;
   color: var(--color-white);
   border: 1px solid var(--color-slate);
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.95rem;
   padding: 14px 28px;
@@ -323,9 +331,9 @@ body {
 .lp-form-card {
   background: #000000;
   border: 1px solid #1a1a1a;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 32px;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.85);
   position: relative;
 }
 
@@ -347,6 +355,7 @@ body {
 
 .lp-label {
   display: block;
+  font-family: var(--font-display);
   font-size: 0.82rem;
   font-weight: 600;
   color: var(--color-white);
@@ -372,8 +381,8 @@ body {
 
 .lp-input:focus, .lp-select:focus {
   outline: none;
-  border-color: #555;
-  background-color: #333;
+  border-color: #555555;
+  background-color: #333333;
   box-shadow: none;
 }
 
@@ -408,6 +417,7 @@ body {
   color: #000000;
   border: 1px solid #25D366;
   border-radius: 10px;
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: 0.98rem;
   text-transform: none;
@@ -419,7 +429,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.15);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.2);
 }
 
 .lp-form-submit-btn:hover {
@@ -427,7 +437,7 @@ body {
   border-color: #1ebe57;
   color: #000000;
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
 }
 
 .lp-security-note {
@@ -500,18 +510,33 @@ body {
 
 .lp-section-title {
   font-family: var(--font-display);
-  font-size: 2.25rem;
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
   font-weight: 800;
-  line-height: 1.25;
+  line-height: 1.2;
   color: var(--color-white);
+  letter-spacing: -0.03em;
   margin-bottom: 16px;
 }
 
 .lp-section-title span.strong {
-  color: var(--color-white);
-  text-decoration: underline;
-  text-decoration-color: var(--color-slate);
-  text-underline-offset: 4px;
+  color: #E2E8F0;
+  background: linear-gradient(135deg, #FFFFFF 20%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.lp-section-title span.strong::after {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #94A3B8 0%, rgba(148, 163, 184, 0.2) 100%);
+  border-radius: 2px;
 }
 
 .lp-section-desc {
@@ -531,6 +556,7 @@ body {
   background-color: #F1F4F9;
   border-color: #D3D8E2;
   color: #1F242C;
+  box-shadow: none;
 }
 
 #depoimentos .lp-eyebrow-dot {
@@ -543,8 +569,24 @@ body {
 }
 
 #depoimentos .lp-section-title span.strong {
-  color: #000000;
-  text-decoration-color: #8C96A8;
+  color: #334155;
+  background: linear-gradient(135deg, #0F172A 20%, #64748B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+#depoimentos .lp-section-title span.strong::after {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #64748B 0%, rgba(100, 116, 139, 0.2) 100%);
+  border-radius: 2px;
 }
 
 #depoimentos .lp-section-desc {
@@ -913,8 +955,11 @@ body {
 }
 
 .lp-feature-title span.highlight-tag {
-  color: var(--color-white);
-  border-bottom: 3px solid var(--color-slate);
+  color: #E2E8F0;
+  background: linear-gradient(135deg, #FFFFFF 20%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-bottom: 3px solid #94A3B8;
   padding-bottom: 2px;
 }
 
