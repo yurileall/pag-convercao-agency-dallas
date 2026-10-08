@@ -452,6 +452,45 @@ button, input, select { font: inherit; }
   width: 100%;
 }
 
+/* CTAs verdes pulsando: leve aumento + anel que se expande e some */
+.btn-dallas-primary,
+.lp-form-submit-btn,
+.lp-wa-float {
+  animation: lpCtaPulse 2s ease-in-out infinite;
+}
+
+/* No hover a animação para, e valem os efeitos de hover de cada botão */
+.btn-dallas-primary:hover,
+.lp-form-submit-btn:hover,
+.lp-wa-float:hover {
+  animation: none;
+}
+
+@keyframes lpCtaPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+  }
+  50% {
+    transform: scale(1.035);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-dallas-primary,
+  .lp-form-submit-btn,
+  .lp-wa-float {
+    animation: none;
+  }
+}
+
 .lp-form-card {
   background: #000000;
   border: 1px solid #1a1a1a;
