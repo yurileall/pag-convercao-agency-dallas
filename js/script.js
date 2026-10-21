@@ -5,17 +5,14 @@
  */
 
 // CONFIGURAÇÃO DOS VÍDEOS DE DEPOIMENTO (YOUTUBE SHORTS)
-// Troque os 3 IDs abaixo pelos vídeos reais dos clientes da Dallas.
+// Vídeos reais de depoimento dos clientes da Dallas (um ID por card .lp-short-card).
 // O ID é o trecho final da URL do YouTube, ex: https://youtube.com/shorts/ID_DO_SHORT_1
 // O player nativo do YouTube já exibe sozinho o avatar, o nome do canal e os
 // inscritos do vídeo (é o mesmo comportamento padrão de um Short incorporado),
 // por isso não é preciso montar esse selo manualmente.
-// ATENÇÃO: os IDs abaixo são vídeos públicos de terceiros usados apenas
-// como placeholder temporário para testar o layout. Substitua antes de publicar.
 const testimonialVideos = [
-  'XqY5uPsFxBA',
-  '_RFBxOSD8Sk',
-  'vkSObVsBBOM'
+  'mgr8DqV6164',
+  'jrLeLWW0qfc'
 ];
 
 // API oficial do YouTube (carregada só quando o 1º short se aproxima da tela).
